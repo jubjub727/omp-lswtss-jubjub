@@ -4,7 +4,8 @@
     "**/target": true,
     "**/node_modules": true,
     "workspaces/dotnet/c-api1-main/src/Generated": true,
-    "workspaces/dotnet/c-api1-main/src/AngelScriptSchema*.json": true,
+    "workspaces/dotnet/c-api1-main/src/AngelScriptSchema.EGS.json": true,
+    "workspaces/dotnet/c-api1-main/src/AngelScriptSchema.Steam.json": true,
     "workspaces/dotnet/**/bin": true,
     "workspaces/dotnet/**/obj": true
   },
@@ -13,7 +14,8 @@
     "**/target": true,
     "**/node_modules": true,
     "workspaces/dotnet/c-api1-main/src/Generated": true,
-    "workspaces/dotnet/c-api1-main/src/AngelScriptSchema*.json": true,
+    "workspaces/dotnet/c-api1-main/src/AngelScriptSchema.EGS.json": true,
+    "workspaces/dotnet/c-api1-main/src/AngelScriptSchema.Steam.json": true,
     "workspaces/dotnet/**/bin": true,
     "workspaces/dotnet/**/obj": true
   },

@@ -67,7 +67,7 @@ public partial class TestCefMod
                 return;
             }
 
-            var currentApiWorldHandle = GetCurrentApiWorldHandle();
+            var currentApiWorldHandle = V1.GetCApi1CurrentApiWorldHandle();
 
             if (currentApiWorldHandle == nint.Zero)
             {

@@ -12,5 +12,7 @@ public interface IClassSchema
 
     public List<IClassFieldSchema> Fields { get; set; }
 
+    public List<IClassStructFieldSchema>? StructFields { get; set; }
+
     public uint? Size { get; set; }
 }

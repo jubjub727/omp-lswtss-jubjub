@@ -7,7 +7,7 @@ public partial class TestCefMod : IDisposable
 {
     static apiEntity.Handle GetPlayerEntityHandle()
     {
-        var currentApiWorldHandle = GetCurrentApiWorldHandle();
+        var currentApiWorldHandle = V1.GetCApi1CurrentApiWorldHandle();
 
         if (currentApiWorldHandle == nint.Zero)
         {

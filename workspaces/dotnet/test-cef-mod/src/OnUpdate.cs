@@ -6,42 +6,22 @@ namespace OMP.LSWTSS;
 
 public partial class TestCefMod
 {
-    delegate void nttUniverseProcessingScopeConstructorDelegate(nttUniverseProcessingScope.Handle handle, nttUniverse.Handle universe, bool flag);
-
-    delegate void nttUniverseProcessingScopeDestructorDelegate(nttUniverseProcessingScope.Handle handle);
-
-    delegate void ApiWorldProcessingScopeConstructorDelegate(ApiWorldProcessingScope.Handle handle, ApiWorld.Handle universe, bool flag);
-
-    delegate void ApiWorldProcessingScopeDestructorDelegate(ApiWorldProcessingScope.Handle handle);
-
     static void OnUpdate()
     {
-        var currentApiWorldHandle = GetCurrentApiWorldHandle();
+        var currentApiWorldHandle = V1.GetCApi1CurrentApiWorldHandle();
 
         if (currentApiWorldHandle == nint.Zero)
         {
             return;
         }
 
-        var nttUniverseProcessingScopeHandle = (nttUniverseProcessingScope.Handle)Marshal.AllocHGlobal(0x20);
+        var nttUniverseProcessingScopeHandle = (nttUniverseProcessingScope.Handle)Marshal.AllocHGlobal(nttUniverseProcessingScope.StructSize);
 
-        var nttUniverseProcessingScopeConstructor = NativeFunc.GetExecute<nttUniverseProcessingScopeConstructorDelegate>(
-            NativeFunc.GetPtr(
-                GetVariantValue.Execute(steamValue: 0x2E4B3F0, egsValue: 0x2E4AF90)
-            )
-        ); 
+        nttUniverseProcessingScopeHandle.Constructor(currentApiWorldHandle.GetUniverse(), true);
 
-        nttUniverseProcessingScopeConstructor(nttUniverseProcessingScopeHandle, currentApiWorldHandle.GetUniverse(), true);
+        var apiWorldProcessingScopeHandle = (ApiWorldProcessingScope.Handle)Marshal.AllocHGlobal(nttUniverseProcessingScope.StructSize);
 
-        var apiWorldProcessingScopeHandle = (ApiWorldProcessingScope.Handle)Marshal.AllocHGlobal(0x20);
-
-        var apiWorldProcessingScopeConstructor = NativeFunc.GetExecute<ApiWorldProcessingScopeConstructorDelegate>(
-            NativeFunc.GetPtr(
-                GetVariantValue.Execute(steamValue: 0x2E4C050, egsValue: 0x2E4BBF0)
-            )
-        );
-
-        apiWorldProcessingScopeConstructor(apiWorldProcessingScopeHandle, currentApiWorldHandle, true);
+        apiWorldProcessingScopeHandle.Constructor(currentApiWorldHandle, true);
 
         if (_charactersInfo == null)
         {
@@ -67,20 +47,12 @@ public partial class TestCefMod
             spawner.Update();
         }
 
-        var apiWorldProcessingScopeDestructor = NativeFunc.GetExecute<ApiWorldProcessingScopeDestructorDelegate>(
-            NativeFunc.GetPtr(
-                GetVariantValue.Execute(steamValue: 0x2E4C110, egsValue: 0x2E4BCB0)
-            )
-        );
+        apiWorldProcessingScopeHandle.Destructor();
 
-        apiWorldProcessingScopeDestructor(apiWorldProcessingScopeHandle);
+        Marshal.FreeHGlobal(apiWorldProcessingScopeHandle);
 
-        var nttUniverseProcessingScopeDestructor = NativeFunc.GetExecute<nttUniverseProcessingScopeDestructorDelegate>(
-            NativeFunc.GetPtr(
-                GetVariantValue.Execute(steamValue: 0x2E4B500, egsValue: 0x2E4B0A0)
-            )
-        );
+        nttUniverseProcessingScopeHandle.Destructor();
 
-        nttUniverseProcessingScopeDestructor(nttUniverseProcessingScopeHandle);
+        Marshal.FreeHGlobal(nttUniverseProcessingScopeHandle);
     }
 }

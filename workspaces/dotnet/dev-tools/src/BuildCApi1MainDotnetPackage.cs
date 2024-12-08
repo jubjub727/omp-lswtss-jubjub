@@ -1,3 +1,5 @@
+using System.IO;
+
 namespace OMP.LSWTSS;
 
 public static class BuildCApi1MainDotnetPackage
@@ -6,8 +8,31 @@ public static class BuildCApi1MainDotnetPackage
     {
         BuildCApi1CoreDotnetPackage.Execute();
 
-        RunCApi1Scraper.Execute(steamGameDirPath, CApi1.Variant.Steam);
-        RunCApi1Scraper.Execute(egsGameDirPath, CApi1.Variant.EGS);
+        if (
+            !File.Exists(
+                Path.Combine(
+                    GetCApi1MainDotnetPackageDirPath.Execute(),
+                    "src",
+                    "AngelScriptSchema.Steam.json"
+                )
+            )
+        )
+        {
+            RunCApi1Scraper.Execute(steamGameDirPath, CApi1.Variant.Steam);
+        }
+
+        if (
+            !File.Exists(
+                Path.Combine(
+                    GetCApi1MainDotnetPackageDirPath.Execute(),
+                    "src",
+                    "AngelScriptSchema.EGS.json"
+                )
+            )
+        )
+        {
+            RunCApi1Scraper.Execute(egsGameDirPath, CApi1.Variant.EGS);
+        }
 
         GenerateCApi1MainDotnetPackageSrcFiles.Execute();
 

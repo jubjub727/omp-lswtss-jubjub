@@ -8,8 +8,6 @@ public partial class TestCefMod
 {
     class PrefabResource : IDisposable
     {
-        delegate nint nttSceneGraphResourceConstructorDelegate(nttSceneGraphResourceHandle.Handle handle, int resourceType);
-
         public bool IsDisposed { get; private set; }
 
         public string Path { get; private set; }
@@ -22,20 +20,14 @@ public partial class TestCefMod
 
             Path = path;
 
-            _handle = (nttSceneGraphResourceHandle.Handle)Marshal.AllocHGlobal(0x88);
+            _handle = (nttSceneGraphResourceHandle.Handle)Marshal.AllocHGlobal(nttSceneGraphResourceHandle.StructSize);
 
-            for (int i = 0; i < 0x88; i++)
+            for (int i = 0; i < nttSceneGraphResourceHandle.StructSize; i++)
             {
                 Marshal.WriteByte(_handle, i, 0);
             }
 
-            var nttSceneGraphResourceConstructor = NativeFunc.GetExecute<nttSceneGraphResourceConstructorDelegate>(
-                NativeFunc.GetPtr(
-                    GetVariantValue.Execute(steamValue: 0x2dcde60, egsValue: 0x2dcda00)
-                )
-            );
-
-            nttSceneGraphResourceConstructor(_handle, 2);
+            _handle.Constructor(2);
 
             _handle.set_ResourcePath(Path);
             _handle.AsyncLoad();

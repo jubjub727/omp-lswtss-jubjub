@@ -14,7 +14,7 @@ public static partial class V1
     static bool wasCApi1CollectablesCharactersTableProcessed = false;
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct TempNuGuid
+    struct TempNuGuid
     {
         public byte V1;
         public byte V2;

@@ -12,6 +12,8 @@ public sealed class NativeClassSchema : INativeClassSchema
 
     public required List<IClassFieldSchema> Fields { get; set; }
 
+    public required List<IClassStructFieldSchema>? StructFields { get; set; }
+
     public required List<INativeClassMethodSchema> Methods { get; set; }
 
     public required uint? Size { get; set; }

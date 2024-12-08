@@ -1,6 +1,5 @@
 using System;
 using System.Numerics;
-using System.Runtime.InteropServices;
 using OMP.LSWTSS.CApi1;
 
 namespace OMP.LSWTSS;
@@ -9,19 +8,7 @@ public partial class TestCefMod
 {
     class Npc : IDisposable
     {
-        delegate DestinationGoal.Handle CreateDestinationGoalDelegate(nint nativeVec3Ptr);
-
-        delegate nint NavRouteGetCurrentHeadingMethodDelegate(NavRoute.Handle handle, nint nativeVec3Ptr);
-
-        delegate void OpponentInfoChangeFactionMethodDelegate(OpponentInfo.Handle handle, [MarshalAs(UnmanagedType.LPUTF8Str)] string factionName);
-
         public bool IsDisposed { get; private set; }
-
-        readonly CreateDestinationGoalDelegate _createDestinationGoal;
-
-        readonly NavRouteGetCurrentHeadingMethodDelegate _navRouteGetCurrentHeadingMethod;
-
-        readonly OpponentInfoChangeFactionMethodDelegate _opponentInfoChangeFactionMethod;
 
         readonly ApiWorld.Handle _worldHandle;
 
@@ -56,24 +43,6 @@ public partial class TestCefMod
         public Npc(ApiWorld.Handle worldHandle, apiEntity.Handle prefabHandle)
         {
             IsDisposed = false;
-
-            _createDestinationGoal = NativeFunc.GetExecute<CreateDestinationGoalDelegate>(
-                NativeFunc.GetPtr(
-                    GetVariantValue.Execute(steamValue: 0x2b5a660, egsValue: 0x2b5a200)
-                )
-            );
-
-            _navRouteGetCurrentHeadingMethod = NativeFunc.GetExecute<NavRouteGetCurrentHeadingMethodDelegate>(
-                NativeFunc.GetPtr(
-                    GetVariantValue.Execute(steamValue: 0xea1ee0, egsValue: 0xea1a80)
-                )
-            );
-
-            _opponentInfoChangeFactionMethod = NativeFunc.GetExecute<OpponentInfoChangeFactionMethodDelegate>(
-                NativeFunc.GetPtr(
-                    GetVariantValue.Execute(steamValue: 0x2589020, egsValue: 0x2588bd0)
-                )
-            );
 
             _worldHandle = worldHandle;
 
@@ -203,7 +172,7 @@ public partial class TestCefMod
                 return;
             }
 
-            _opponentInfoChangeFactionMethod(_opponentInfoHandle, factionName);
+            _opponentInfoHandle.ChangeFaction(factionName);
         }
 
         void UpdateMoveToBattleCenterBehavior()
@@ -242,18 +211,13 @@ public partial class TestCefMod
                 ||
                 (_lastBattleCenterPosition.Value - battleCenterPosition).Length() > 0.1f)
             {
-                var battleCenterNativePosition = new NativeVector3
-                {
-                    X = battleCenterPosition.X,
-                    Y = battleCenterPosition.Y,
-                    Z = battleCenterPosition.Z,
-                };
+                var battleCenterPositionAsNuVec3 = battleCenterPosition.ToCApiNuVec3();
 
                 DestinationGoal.Handle destinationGoalHandle;
 
                 unsafe
                 {
-                    destinationGoalHandle = _createDestinationGoal((nint)(&battleCenterNativePosition));
+                    destinationGoalHandle = CreateDestinationGoalGlobalFunc.Execute((NuVec3.Handle)(nint)(&battleCenterPositionAsNuVec3));
                 }
 
                 _navRouteHandle.SetGoal((BaseRouteGoal.Handle)(nint)destinationGoalHandle);
@@ -263,16 +227,11 @@ public partial class TestCefMod
 
             var position = FetchPosition();
 
-            var nativePosition = new NativeVector3
-            {
-                X = position.X,
-                Y = position.Y,
-                Z = position.Z,
-            };
+            var positionAsNuVec3 = position.ToCApiNuVec3();
 
             unsafe
             {
-                _navRouteHandle.SetStart((NuVec3.Handle)(nint)(&nativePosition));
+                _navRouteHandle.SetStart(&positionAsNuVec3);
             }
 
             _navRouteHandle.Update(aiSystemHandle);
@@ -282,7 +241,7 @@ public partial class TestCefMod
                 return;
             }
 
-            var moveToBattleCenterBehaviorNativeDirection = new NativeVector3
+            var moveToBattleCenterBehaviorDirectionAsNuVec3 = new NuVec3
             {
                 X = 0f,
                 Y = 0f,
@@ -291,15 +250,10 @@ public partial class TestCefMod
 
             unsafe
             {
-                _navRouteGetCurrentHeadingMethod(_navRouteHandle, (nint)(&moveToBattleCenterBehaviorNativeDirection));
+                _navRouteHandle.GetCurrentHeading2(&moveToBattleCenterBehaviorDirectionAsNuVec3);
             }
 
-            var moveToBattleCenterBehaviorDirection = new Vector3
-            {
-                X = moveToBattleCenterBehaviorNativeDirection.X,
-                Y = moveToBattleCenterBehaviorNativeDirection.Y,
-                Z = moveToBattleCenterBehaviorNativeDirection.Z,
-            };
+            var moveToBattleCenterBehaviorDirection = moveToBattleCenterBehaviorDirectionAsNuVec3.ToSystemNumericsVector3();
 
             if (
                 MathF.Abs(moveToBattleCenterBehaviorDirection.X)
@@ -325,16 +279,11 @@ public partial class TestCefMod
                 *
                 MoveToBattleCenterBehaviorSpeed;
 
-            var moveToBattleCenterBehaviorNativeVelocity = new NativeVector3
-            {
-                X = moveToBattleCenterBehaviorVelocity.X,
-                Y = moveToBattleCenterBehaviorVelocity.Y,
-                Z = moveToBattleCenterBehaviorVelocity.Z,
-            };
+            var moveToBattleCenterBehaviorVelocityAsNuVec3 = moveToBattleCenterBehaviorVelocity.ToCApiNuVec3();
 
             unsafe
             {
-                _horizontalCharacterMoverHandle.SetMoveLaneVelocity((NuVec3.Handle)(nint)(&moveToBattleCenterBehaviorNativeVelocity));
+                _horizontalCharacterMoverHandle.SetMoveLaneVelocity(&moveToBattleCenterBehaviorVelocityAsNuVec3);
             }
 
             var moveToBattleCenterBehaviorAngle = MathF.Atan2(

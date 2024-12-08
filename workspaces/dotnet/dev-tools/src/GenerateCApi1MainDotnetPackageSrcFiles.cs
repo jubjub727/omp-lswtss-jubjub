@@ -15,6 +15,10 @@ public static class GenerateCApi1MainDotnetPackageSrcFiles
                     CApi1.ReadPackageSchemaFile.Execute(
                         GetCApi1MainDotnetPackageDirPath.Execute(),
                         "AngelScriptSchema.EGS.json"
+                    ),
+                    CApi1.ReadPackageSchemaFile.Execute(
+                        GetCApi1MainDotnetPackageDirPath.Execute(),
+                        "CustomSchema.json"
                     )
                 ]
             )

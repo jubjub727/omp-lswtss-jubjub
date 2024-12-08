@@ -67,7 +67,12 @@ public static class GetAngelScriptClassSchema
             }
         }
 
-        var angelScriptClassSize = asIObjectTypeHandle.GetSize();
+        var angelScriptClassSize = (uint?)asIObjectTypeHandle.GetSize();
+
+        if (angelScriptClassSize == 0)
+        {
+            angelScriptClassSize = null;
+        }
 
         var angelScriptClassSchema = new AngelScriptClassSchema
         {
@@ -78,6 +83,7 @@ public static class GetAngelScriptClassSchema
             ParentClassTypes = [],
             Methods = [],
             Fields = [],
+            StructFields = null,
             Size = angelScriptClassSize,
         };
 

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using OMP.LSWTSS.CApi1;
 
 namespace OMP.LSWTSS;
 
@@ -17,7 +16,7 @@ public static partial class V1
 
         foreach (var collectablesTableHandle in cApi1CollectablesTableHandles)
         {
-            var collectablesTableName = collectables.Table.GetNameMethod.Execute(collectablesTableHandle);
+            var collectablesTableName = CApi1.collectables.Table.GetNameMethod.Execute(collectablesTableHandle);
 
             if (collectablesTableName == "Characters")
             {

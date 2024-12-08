@@ -1,4 +1,5 @@
 /bin
 /obj
-/src/AngelScriptSchema*.json
+/src/AngelScriptSchema.EGS.json
+/src/AngelScriptSchema.Steam.json
 /src/Generated

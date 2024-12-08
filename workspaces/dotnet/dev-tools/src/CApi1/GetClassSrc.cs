@@ -29,6 +29,28 @@ public static class GetClassSrc
         classSrcBuilder.Append("{");
         classSrcBuilder.Ident++;
 
+        if (classSchema.StructFields != null)
+        {
+            foreach (var classStructFieldSchema in classSchema.StructFields)
+            {
+                var classStructFieldTypeSrc = GetTypeSrc.Execute(classStructFieldSchema.Type);
+
+                var classStructFieldTypeMarshalAsModifierSrc = GetTypeMarshalAsAttributeSrc.Execute(classStructFieldSchema.Type);
+
+                if (classStructFieldTypeMarshalAsModifierSrc != null)
+                {
+                    classSrcBuilder.Append($"[{classStructFieldTypeMarshalAsModifierSrc}]");
+                }
+
+                classSrcBuilder.Append($"public {classStructFieldTypeSrc} {classStructFieldSchema.Name};");
+            }
+        }
+
+        if (classSchema.Size != null)
+        {
+            classSrcBuilder.Append($"public static int StructSize = {classSchema.Size};");
+        }
+
         var classHandleSrcBuilder = new SrcBuilder();
 
         classHandleSrcBuilder.Append("[System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Sequential)]");
@@ -78,6 +100,14 @@ public static class GetClassSrc
                 );
                 classHandleSrcBuilder.Append();
             }
+        }
+
+        if (classSchema.StructFields != null)
+        {
+            classHandleSrcBuilder.Append($"public unsafe static implicit operator {classSchema.Name}*(Handle handle) => ({classSchema.Name}*)handle.Ptr;");
+            classHandleSrcBuilder.Append();
+            classHandleSrcBuilder.Append($"public unsafe static implicit operator Handle({classSchema.Name}* ptr) => new() {{ Ptr = (nint)ptr }};");
+            classHandleSrcBuilder.Append();
         }
 
         classHandleSrcBuilder.Append($"public static implicit operator nint(Handle handle) => handle.Ptr;");

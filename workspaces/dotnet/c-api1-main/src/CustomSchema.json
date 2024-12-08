@@ -1,0 +1,276 @@
+{
+  "Enums": [],
+  "GlobalFuncs": [
+    {
+      "$type": "OMP.LSWTSS.CApi1.GlobalNativeFuncSchema, omp-lswtss-c-api1-foundation",
+      "Name": "CreateDestinationGoal",
+      "SteamOffset": 45459040,
+      "EGSOffset": 45457920,
+      "Params": [
+        {
+          "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+          "Name": "param0",
+          "IsInRef": false,
+          "IsOutRef": false,
+          "Type": {
+            "$type": "OMP.LSWTSS.CApi1.ClassHandleTypeSchema, omp-lswtss-c-api1-foundation",
+            "ClassName": "NuVec3",
+            "ClassNamespace": null
+          }
+        }
+      ],
+      "ReturnType": {
+        "$type": "OMP.LSWTSS.CApi1.ClassHandleTypeSchema, omp-lswtss-c-api1-foundation",
+        "ClassName": "DestinationGoal",
+        "ClassNamespace": null
+      }
+    },
+    {
+      "$type": "OMP.LSWTSS.CApi1.GlobalNativeFuncSchema, omp-lswtss-c-api1-foundation",
+      "Name": "GetByName",
+      "Namespace": "NuStringTable",
+      "SteamOffset": 807392,
+      "EGSOffset": 807344,
+      "Params": [
+        {
+          "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+          "Name": "param0",
+          "IsInRef": false,
+          "IsOutRef": false,
+          "Type": {
+            "$type": "OMP.LSWTSS.CApi1.StringTypeSchema, omp-lswtss-c-api1-foundation",
+            "IsStringNullable": false,
+            "IsStringOwned": true
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+          "Name": "param1",
+          "IsInRef": false,
+          "IsOutRef": false,
+          "Type": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "ULong"
+          }
+        }
+      ],
+      "ReturnType": {
+        "$type": "OMP.LSWTSS.CApi1.StringTypeSchema, omp-lswtss-c-api1-foundation",
+        "IsStringNullable": false,
+        "IsStringOwned": false
+      }
+    }
+  ],
+  "Classes": [
+    {
+      "$type": "OMP.LSWTSS.CApi1.AngelScriptClassSchema, omp-lswtss-c-api1-foundation",
+      "Name": "NuVec3",
+      "Namespace": null,
+      "ParentClassTypes": [],
+      "Fields": [],
+      "StructFields": [
+        {
+          "$type": "OMP.LSWTSS.CApi1.ClassStructFieldSchema, omp-lswtss-c-api1-foundation",
+          "Name": "X",
+          "Type": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "Float"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.ClassStructFieldSchema, omp-lswtss-c-api1-foundation",
+          "Name": "Y",
+          "Type": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "Float"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.ClassStructFieldSchema, omp-lswtss-c-api1-foundation",
+          "Name": "Z",
+          "Type": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "Float"
+          }
+        }
+      ],
+      "Methods": []
+    },
+    {
+      "$type": "OMP.LSWTSS.CApi1.AngelScriptClassSchema, omp-lswtss-c-api1-foundation",
+      "Name": "OpponentInfo",
+      "ParentClassTypes": [],
+      "Fields": [],
+      "Methods": [
+        {
+          "$type": "OMP.LSWTSS.CApi1.AngelScriptClassNativeMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "ChangeFaction",
+          "SteamOffset": 39358496,
+          "EGSOffset": 39357392,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "factionName",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.StringTypeSchema, omp-lswtss-c-api1-foundation",
+                "IsStringNullable": false,
+                "IsStringOwned": true
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "$type": "OMP.LSWTSS.CApi1.AngelScriptClassSchema, omp-lswtss-c-api1-foundation",
+      "Name": "NavRoute",
+      "ParentClassTypes": [],
+      "Fields": [],
+      "Methods": [
+        {
+          "$type": "OMP.LSWTSS.CApi1.AngelScriptClassNativeMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetCurrentHeading2",
+          "SteamOffset": 15343328,
+          "EGSOffset": 15342208,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "param0",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.ClassHandleTypeSchema, omp-lswtss-c-api1-foundation",
+                "ClassName": "NuVec3",
+                "ClassNamespace": null
+              }
+            }
+          ],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.ClassHandleTypeSchema, omp-lswtss-c-api1-foundation",
+            "ClassName": "NuVec3",
+            "ClassNamespace": null
+          }
+        }
+      ]
+    },
+    {
+      "$type": "OMP.LSWTSS.CApi1.AngelScriptClassSchema, omp-lswtss-c-api1-foundation",
+      "Name": "nttUniverseProcessingScope",
+      "ParentClassTypes": [],
+      "Fields": [],
+      "Methods": [
+        {
+          "$type": "OMP.LSWTSS.CApi1.AngelScriptClassNativeMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "Constructor",
+          "SteamOffset": 48542704,
+          "EGSOffset": 48541584,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "param0",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.ClassHandleTypeSchema, omp-lswtss-c-api1-foundation",
+                "ClassName": "nttUniverse",
+                "ClassNamespace": null
+              }
+            },
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "param1",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Bool"
+              }
+            }
+          ]
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.AngelScriptClassNativeMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "Destructor",
+          "SteamOffset": 48542976,
+          "EGSOffset": 48541856,
+          "Params": []
+        }
+      ],
+      "Size": 32
+    },
+    {
+      "$type": "OMP.LSWTSS.CApi1.AngelScriptClassSchema, omp-lswtss-c-api1-foundation",
+      "Name": "ApiWorldProcessingScope",
+      "ParentClassTypes": [],
+      "Fields": [],
+      "Methods": [
+        {
+          "$type": "OMP.LSWTSS.CApi1.AngelScriptClassNativeMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "Constructor",
+          "SteamOffset": 48545872,
+          "EGSOffset": 48544752,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "param0",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.ClassHandleTypeSchema, omp-lswtss-c-api1-foundation",
+                "ClassName": "ApiWorld",
+                "ClassNamespace": null
+              }
+            },
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "param1",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Bool"
+              }
+            }
+          ]
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.AngelScriptClassNativeMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "Destructor",
+          "SteamOffset": 48546064,
+          "EGSOffset": 48544944,
+          "Params": []
+        }
+      ],
+      "Size": 32
+    },
+    {
+      "$type": "OMP.LSWTSS.CApi1.AngelScriptClassSchema, omp-lswtss-c-api1-foundation",
+      "Name": "nttSceneGraphResourceHandle",
+      "ParentClassTypes": [],
+      "Fields": [],
+      "Methods": [
+        {
+          "$type": "OMP.LSWTSS.CApi1.AngelScriptClassNativeMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "Constructor",
+          "SteamOffset": 48029280,
+          "EGSOffset": 48028160,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "resourceType",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Int"
+              }
+            }
+          ]
+        }
+      ],
+      "Size": 136
+    }
+  ]
+}

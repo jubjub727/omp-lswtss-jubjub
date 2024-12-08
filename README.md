@@ -36,6 +36,44 @@ For Steam version, you can use this command to inspect process stdout:
 dotnet run -- run-steam-game [PATH_TO_STEAM_GAME_DIRECTORY]
 ```
 
+### VSCode Integration
+
+1. Install recommended VSCode Extensions
+2. Create `.vscode/tasks.local.json` and add entries to `inputs` field, example:
+```json
+{
+  "version": "2.0.0",
+  "inputs": [
+    {
+      "id": "gameDirPath",
+      "description": "gameDirPath",
+      "type": "pickString",
+      "options": [
+        "PATH_TO_STEAM_GAME_DIRECTORY",
+        "PATH_TO_EGS_GAME_DIRECTORY",
+      ]
+    },
+    {
+      "id": "steamGameDirPath",
+      "description": "steamGameDirPath",
+      "type": "pickString",
+      "options": [
+        "PATH_TO_STEAM_GAME_DIRECTORY",
+      ]
+    },
+    {
+      "id": "egsGameDirPath",
+      "description": "egsGameDirPath",
+      "type": "pickString",
+      "options": [
+        "PATH_TO_EGS_GAME_DIRECTORY",
+      ]
+    }
+  ]
+}
+```
+3. Use VSCode Tasks to perform various actions (building, installing etc.)
+
 ## Special Thanks
 
 To all members of **TTGames LEGO Modding Discord Server** for unparallel help and guidance ❤️

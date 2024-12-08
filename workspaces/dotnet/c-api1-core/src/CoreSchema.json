@@ -1,0 +1,1318 @@
+{
+  "Enums": [],
+  "GlobalFuncs": [],
+  "Classes": [
+    {
+      "$type": "OMP.LSWTSS.CApi1.NativeClassSchema, omp-lswtss-c-api1-foundation",
+      "Name": "GameFramework",
+      "Fields": [],
+      "Methods": [
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassNativeMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "Update",
+          "SteamOffset": 57060512,
+          "EGSOffset": 57062128,
+          "Params": [],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "Bool"
+          }
+        }
+      ]
+    },
+    {
+      "$type": "OMP.LSWTSS.CApi1.NativeClassSchema, omp-lswtss-c-api1-foundation",
+      "Name": "FileDevicePC",
+      "Namespace": "nttFile",
+      "Fields": [],
+      "Methods": [
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassNativeMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "Constructor",
+          "SteamOffset": 54532368,
+          "EGSOffset": 54537968,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "param0",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.StringTypeSchema, omp-lswtss-c-api1-foundation",
+                "IsStringNullable": false,
+                "IsStringOwned": true
+              }
+            },
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "param1",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Pointer"
+              }
+            }
+          ],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "Pointer"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassNativeMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "Vtable24",
+          "SteamOffset": 54537024,
+          "EGSOffset": 54542624,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "param0",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Pointer"
+              }
+            },
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "param1",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Pointer"
+              }
+            },
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "param2",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Int"
+              }
+            }
+          ],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "Pointer"
+          }
+        }
+      ]
+    },
+    {
+      "$type": "OMP.LSWTSS.CApi1.NativeClassSchema, omp-lswtss-c-api1-foundation",
+      "Name": "nuFileDeviceDat",
+      "Fields": [],
+      "Methods": [
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassNativeMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "Constructor",
+          "SteamOffset": 54486816,
+          "EGSOffset": 54492416,
+          "Params": [],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "Pointer"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassNativeMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "Vtable24",
+          "SteamOffset": 54490480,
+          "EGSOffset": 54496080,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "param0",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Pointer"
+              }
+            },
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "param1",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Pointer"
+              }
+            },
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "param2",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Int"
+              }
+            }
+          ],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "Pointer"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassNativeMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "Vtable31",
+          "SteamOffset": 54491536,
+          "EGSOffset": 54497136,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "param0",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Pointer"
+              }
+            },
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "param1",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Pointer"
+              }
+            }
+          ],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "UByte"
+          }
+        }
+      ]
+    },
+    {
+      "$type": "OMP.LSWTSS.CApi1.NativeClassSchema, omp-lswtss-c-api1-foundation",
+      "Name": "Table",
+      "Namespace": "collectables_",
+      "Fields": [],
+      "Methods": [
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassNativeMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "Constructor",
+          "SteamOffset": 22514736,
+          "EGSOffset": 22513632,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "param0",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Pointer"
+              }
+            },
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "param1",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Pointer"
+              }
+            },
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "param2",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Pointer"
+              }
+            }
+          ],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "Pointer"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassNativeMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "AddEntryInner",
+          "SteamOffset": 22528128,
+          "EGSOffset": 22527024,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "param0",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Pointer"
+              }
+            },
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "param1",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Pointer"
+              }
+            },
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "param2",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Pointer"
+              }
+            }
+          ],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "Pointer"
+          }
+        }
+      ]
+    },
+    {
+      "$type": "OMP.LSWTSS.CApi1.NativeClassSchema, omp-lswtss-c-api1-foundation",
+      "Name": "AsCScriptEngine",
+      "Fields": [],
+      "Methods": [
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassNativeMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "RegisterObjectType",
+          "SteamOffset": 47553360,
+          "EGSOffset": 47552240,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "name",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.StringTypeSchema, omp-lswtss-c-api1-foundation",
+                "IsStringNullable": false,
+                "IsStringOwned": true
+              }
+            },
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "byteSize",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Int"
+              }
+            },
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "flags",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Int"
+              }
+            }
+          ],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "UInt"
+          }
+        }
+      ]
+    },
+    {
+      "$type": "OMP.LSWTSS.CApi1.NativeClassSchema, omp-lswtss-c-api1-foundation",
+      "Name": "AsCScriptFunction",
+      "Fields": [
+        {
+          "$type": "OMP.LSWTSS.CApi1.ClassFieldSchema, omp-lswtss-c-api1-foundation",
+          "Name": "SysFuncIntf",
+          "Type": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "Pointer"
+          },
+          "SteamOffset": 296,
+          "EGSOffset": 296
+        }
+      ],
+      "Methods": []
+    },
+    {
+      "$type": "OMP.LSWTSS.CApi1.NativeClassSchema, omp-lswtss-c-api1-foundation",
+      "Name": "AsIScriptContext",
+      "Fields": [],
+      "Methods": [
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "Prepare",
+          "VtableIndex": 3,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "func",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.ClassHandleTypeSchema, omp-lswtss-c-api1-foundation",
+                "ClassName": "AsIScriptFunction"
+              }
+            }
+          ],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "Int"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "Execute",
+          "VtableIndex": 5,
+          "Params": [],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "Int"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "SetObject",
+          "VtableIndex": 12,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "obj",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Pointer"
+              }
+            }
+          ],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "Int"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "SetArgByte",
+          "VtableIndex": 13,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "arg",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "UInt"
+              }
+            },
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "value",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "UByte"
+              }
+            }
+          ],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "Int"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "SetArgWord",
+          "VtableIndex": 14,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "arg",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "UInt"
+              }
+            },
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "value",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "UShort"
+              }
+            }
+          ],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "Int"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "SetArgDWord",
+          "VtableIndex": 15,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "arg",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "UInt"
+              }
+            },
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "value",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "UInt"
+              }
+            }
+          ],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "Int"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "SetArgQWord",
+          "VtableIndex": 16,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "arg",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "UInt"
+              }
+            },
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "value",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "ULong"
+              }
+            }
+          ],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "Int"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "SetArgFloat",
+          "VtableIndex": 17,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "arg",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "UInt"
+              }
+            },
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "value",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Float"
+              }
+            }
+          ],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "Int"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "SetArgDouble",
+          "VtableIndex": 18,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "arg",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "UInt"
+              }
+            },
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "value",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Double"
+              }
+            }
+          ],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "Int"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "SetArgAddress",
+          "VtableIndex": 19,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "arg",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "UInt"
+              }
+            },
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "addr",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Pointer"
+              }
+            }
+          ],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "Int"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "SetArgObject",
+          "VtableIndex": 20,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "arg",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "UInt"
+              }
+            },
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "obj",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Pointer"
+              }
+            }
+          ],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "Int"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetReturnByte",
+          "VtableIndex": 23,
+          "Params": [],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "UByte"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetReturnWord",
+          "VtableIndex": 24,
+          "Params": [],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "UShort"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetReturnDWord",
+          "VtableIndex": 25,
+          "Params": [],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "UInt"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetReturnQWord",
+          "VtableIndex": 26,
+          "Params": [],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "ULong"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetReturnFloat",
+          "VtableIndex": 27,
+          "Params": [],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "Float"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetReturnDouble",
+          "VtableIndex": 28,
+          "Params": [],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "Double"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetReturnAddress",
+          "VtableIndex": 29,
+          "Params": [],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "Pointer"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetReturnObject",
+          "VtableIndex": 30,
+          "Params": [],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "Pointer"
+          }
+        }
+      ]
+    },
+    {
+      "$type": "OMP.LSWTSS.CApi1.NativeClassSchema, omp-lswtss-c-api1-foundation",
+      "Name": "AsIScriptEngine",
+      "Fields": [],
+      "Methods": [
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetGlobalFunctionCount",
+          "VtableIndex": 11,
+          "Params": [],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "UInt"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetGlobalFunctionByIndex",
+          "VtableIndex": 12,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "index",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "UInt"
+              }
+            }
+          ],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.ClassHandleTypeSchema, omp-lswtss-c-api1-foundation",
+            "ClassName": "AsIScriptFunction"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetObjectTypeCount",
+          "VtableIndex": 25,
+          "Params": [],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "UInt"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetObjectTypeByIndex",
+          "VtableIndex": 26,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "index",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "UInt"
+              }
+            }
+          ],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.ClassHandleTypeSchema, omp-lswtss-c-api1-foundation",
+            "ClassName": "AsITypeInfo"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetEnumCount",
+          "VtableIndex": 35,
+          "Params": [],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "UInt"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetEnumByIndex",
+          "VtableIndex": 36,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "index",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "UInt"
+              }
+            }
+          ],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.ClassHandleTypeSchema, omp-lswtss-c-api1-foundation",
+            "ClassName": "AsITypeInfo"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetFuncdefCount",
+          "VtableIndex": 38,
+          "Params": [],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "UInt"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetFuncdefByIndex",
+          "VtableIndex": 39,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "index",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "UInt"
+              }
+            }
+          ],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.ClassHandleTypeSchema, omp-lswtss-c-api1-foundation",
+            "ClassName": "AsITypeInfo"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetTypeInfoById",
+          "VtableIndex": 57,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "typeId",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Int"
+              }
+            }
+          ],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.ClassHandleTypeSchema, omp-lswtss-c-api1-foundation",
+            "ClassName": "AsITypeInfo"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "CreateContext",
+          "VtableIndex": 60,
+          "Params": [],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.ClassHandleTypeSchema, omp-lswtss-c-api1-foundation",
+            "ClassName": "AsIScriptContext"
+          }
+        }
+      ]
+    },
+    {
+      "$type": "OMP.LSWTSS.CApi1.NativeClassSchema, omp-lswtss-c-api1-foundation",
+      "Name": "AsIScriptFunction",
+      "Fields": [],
+      "Methods": [
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetDeclarationMethod",
+          "VtableIndex": 15,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "includeObjectName",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Bool"
+              }
+            },
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "includeNamespace",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Bool"
+              }
+            },
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "includeParamNames",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Bool"
+              }
+            }
+          ],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.StringTypeSchema, omp-lswtss-c-api1-foundation",
+            "IsStringNullable": false,
+            "IsStringOwned": false
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetObjectName",
+          "VtableIndex": 12,
+          "Params": [],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.StringTypeSchema, omp-lswtss-c-api1-foundation",
+            "IsStringNullable": false,
+            "IsStringOwned": false
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetName",
+          "VtableIndex": 13,
+          "Params": [],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.StringTypeSchema, omp-lswtss-c-api1-foundation",
+            "IsStringNullable": false,
+            "IsStringOwned": false
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetNamespace",
+          "VtableIndex": 14,
+          "Params": [],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.StringTypeSchema, omp-lswtss-c-api1-foundation",
+            "IsStringNullable": false,
+            "IsStringOwned": false
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetParamCount",
+          "VtableIndex": 24,
+          "Params": [],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "UInt"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetParam",
+          "VtableIndex": 25,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "index",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "UInt"
+              }
+            },
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "typeId",
+              "IsInRef": false,
+              "IsOutRef": true,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Int"
+              }
+            },
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "flags",
+              "IsInRef": false,
+              "IsOutRef": true,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "UInt"
+              }
+            },
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "name",
+              "IsInRef": false,
+              "IsOutRef": true,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.StringTypeSchema, omp-lswtss-c-api1-foundation",
+                "IsStringNullable": false,
+                "IsStringOwned": false
+              }
+            },
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "defaultArg",
+              "IsInRef": false,
+              "IsOutRef": true,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.StringTypeSchema, omp-lswtss-c-api1-foundation",
+                "IsStringNullable": true,
+                "IsStringOwned": false
+              }
+            }
+          ],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "Int"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetReturnTypeId",
+          "VtableIndex": 26,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "flags",
+              "IsInRef": false,
+              "IsOutRef": true,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "UInt"
+              }
+            }
+          ],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "Int"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetUserData",
+          "VtableIndex": 38,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "userDataType",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Long"
+              }
+            }
+          ],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "Pointer"
+          }
+        }
+      ]
+    },
+    {
+      "$type": "OMP.LSWTSS.CApi1.NativeClassSchema, omp-lswtss-c-api1-foundation",
+      "Name": "AsITypeInfo",
+      "Fields": [],
+      "Methods": [
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetName",
+          "VtableIndex": 6,
+          "Params": [],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.StringTypeSchema, omp-lswtss-c-api1-foundation",
+            "IsStringNullable": false,
+            "IsStringOwned": false
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetNamespace",
+          "VtableIndex": 7,
+          "Params": [],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.StringTypeSchema, omp-lswtss-c-api1-foundation",
+            "IsStringNullable": false,
+            "IsStringOwned": false
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetSize",
+          "VtableIndex": 11,
+          "Params": [],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "UInt"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetSubTypeId",
+          "VtableIndex": 13,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "subTypeIndex",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "UInt"
+              }
+            }
+          ],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "Int"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetSubTypeCount",
+          "VtableIndex": 15,
+          "Params": [],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "Int"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetInterfaceCount",
+          "VtableIndex": 16,
+          "Params": [],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "UInt"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetMethodCount",
+          "VtableIndex": 22,
+          "Params": [],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "UInt"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetMethodByIndex",
+          "VtableIndex": 23,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "index",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "UInt"
+              }
+            },
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "getVirtual",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Bool"
+              }
+            }
+          ],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.ClassHandleTypeSchema, omp-lswtss-c-api1-foundation",
+            "ClassName": "AsIScriptFunction"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetPropertyCount",
+          "VtableIndex": 26,
+          "Params": [],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "UInt"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetBehaviourCount",
+          "VtableIndex": 29,
+          "Params": [],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "UInt"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetBehaviourByIndex",
+          "VtableIndex": 30,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "index",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "UInt"
+              }
+            },
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "outBehaviour",
+              "IsInRef": false,
+              "IsOutRef": true,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Int"
+              }
+            }
+          ],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.ClassHandleTypeSchema, omp-lswtss-c-api1-foundation",
+            "ClassName": "AsIScriptFunction"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetEnumValueCount",
+          "VtableIndex": 34,
+          "Params": [],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+            "PrimitiveKind": "UInt"
+          }
+        },
+        {
+          "$type": "OMP.LSWTSS.CApi1.NativeClassVtableMethodSchema, omp-lswtss-c-api1-foundation",
+          "Name": "GetEnumValueByIndex",
+          "VtableIndex": 35,
+          "Params": [
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "index",
+              "IsInRef": false,
+              "IsOutRef": false,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "UInt"
+              }
+            },
+            {
+              "$type": "OMP.LSWTSS.CApi1.FuncParamSchema, omp-lswtss-c-api1-foundation",
+              "Name": "outValue",
+              "IsInRef": false,
+              "IsOutRef": true,
+              "Type": {
+                "$type": "OMP.LSWTSS.CApi1.PrimitiveTypeSchema, omp-lswtss-c-api1-foundation",
+                "PrimitiveKind": "Int"
+              }
+            }
+          ],
+          "ReturnType": {
+            "$type": "OMP.LSWTSS.CApi1.StringTypeSchema, omp-lswtss-c-api1-foundation",
+            "IsStringNullable": false,
+            "IsStringOwned": false
+          }
+        }
+      ]
+    }
+  ]
+}

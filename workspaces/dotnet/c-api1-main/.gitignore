@@ -1,0 +1,4 @@
+/bin
+/obj
+/src/AngelScriptSchema*.json
+/src/Generated

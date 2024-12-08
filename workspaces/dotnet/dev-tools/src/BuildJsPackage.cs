@@ -12,7 +12,7 @@ public static class BuildJsPackage
             StartInfo = new ProcessStartInfo
             {
                 FileName = "cmd.exe",
-                Arguments = $"/C yarn build",
+                Arguments = $"/C yarn && yarn build",
                 WorkingDirectory = jsPackageDirPath,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,

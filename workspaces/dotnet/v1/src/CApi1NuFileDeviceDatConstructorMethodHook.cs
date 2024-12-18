@@ -4,13 +4,13 @@ namespace OMP.LSWTSS;
 
 public static partial class V1
 {
-    static readonly CFuncHook1<CApi1.nuFileDeviceDat.ConstructorMethod.Delegate> cApi1NuFileDeviceDatConstructorMethodHook = new(
-        CApi1.nuFileDeviceDat.ConstructorMethod.Ptr,
-        (handle) =>
+    static readonly CFuncHook1<CApi1.NuFileDeviceDat.ConstructorMethod.NativeDelegate> _cApi1NuFileDeviceDatConstructorMethodHook = new(
+        CApi1.NuFileDeviceDat.ConstructorMethod.Info.NativePtr,
+        (nativeDataRawPtr) =>
         {
-            cApi1NuFileDeviceDatHandle = handle;
-            Console.WriteLine("Acquired nuFileDeviceDatHandle");
-            return cApi1NuFileDeviceDatConstructorMethodHook!.Trampoline!(handle);
+            _cApi1NuFileDeviceDat = (CApi1.NuFileDeviceDat.NativeHandle)nativeDataRawPtr;
+            Console.WriteLine("Acquired NuFileDeviceDat");
+            return _cApi1NuFileDeviceDatConstructorMethodHook!.Trampoline!(nativeDataRawPtr);
         }
     );
 }

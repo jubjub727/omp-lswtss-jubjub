@@ -7,7 +7,7 @@ if (commandName == "build-c-func-hook1")
 {
     BuildCFuncHook1.Execute();
 }
-if (commandName == "install-c-func-hook1")
+else if (commandName == "install-c-func-hook1")
 {
     string gameDirPath = args[1];
     InstallCFuncHook1.Execute(gameDirPath);
@@ -68,6 +68,15 @@ else if (commandName == "install-test-cef-mod")
     string gameDirPath = args[1];
     InstallTestCefMod.Execute(gameDirPath);
 }
+else if (commandName == "build-galaxy-unleashed")
+{
+    BuildGalaxyUnleashed.Execute();
+}
+else if (commandName == "install-galaxy-unleashed")
+{
+    string gameDirPath = args[1];
+    InstallGalaxyUnleashed.Execute(gameDirPath);
+}
 else if (commandName == "build-bundle")
 {
     BuildBundle.Execute();
@@ -91,12 +100,12 @@ else if (commandName == "install-all")
 else if (commandName == "run-steam-game")
 {
     string gameDirPath = args[1];
-    RunGame.Execute(gameDirPath, OMP.LSWTSS.CApi1.Variant.Steam);
+    RunGame.Execute(gameDirPath, GameKind.SteamGame);
 }
 else if (commandName == "run-egs-game")
 {
     string gameDirPath = args[1];
-    RunGame.Execute(gameDirPath, OMP.LSWTSS.CApi1.Variant.EGS);
+    RunGame.Execute(gameDirPath, GameKind.EGSGame);
 }
 else
 {

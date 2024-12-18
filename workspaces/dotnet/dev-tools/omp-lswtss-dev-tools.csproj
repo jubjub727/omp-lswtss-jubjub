@@ -3,6 +3,7 @@
   <ItemGroup>
     <ProjectReference Include="..\c-api1-foundation\omp-lswtss-c-api1-foundation.csproj" />
     <PackageReference Include="CopyDirectory" Version="1.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <PropertyGroup>

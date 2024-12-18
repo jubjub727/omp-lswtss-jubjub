@@ -1,11 +1,25 @@
 {
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.tabSize": 2,
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.tabSize": 2,
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.tabSize": 2,
+  },
+  "eslint.format.enable": true,
+  "files.exclude": {
+    "workspaces/dotnet/c-api1-main": true,
+  },
   "files.watcherExclude": {
     "**/dist": true,
     "**/target": true,
     "**/node_modules": true,
-    "workspaces/dotnet/c-api1-main/src/Generated": true,
-    "workspaces/dotnet/c-api1-main/src/AngelScriptSchema.EGS.json": true,
-    "workspaces/dotnet/c-api1-main/src/AngelScriptSchema.Steam.json": true,
+    "workspaces/dotnet/c-api1-main": true,
     "workspaces/dotnet/**/bin": true,
     "workspaces/dotnet/**/obj": true
   },
@@ -13,16 +27,14 @@
     "**/dist": true,
     "**/target": true,
     "**/node_modules": true,
-    "workspaces/dotnet/c-api1-main/src/Generated": true,
-    "workspaces/dotnet/c-api1-main/src/AngelScriptSchema.EGS.json": true,
-    "workspaces/dotnet/c-api1-main/src/AngelScriptSchema.Steam.json": true,
+    "workspaces/dotnet/c-api1-main": true,
     "workspaces/dotnet/**/bin": true,
     "workspaces/dotnet/**/obj": true
   },
   "[csharp]": {
     "editor.detectIndentation": false,
     "editor.tabSize": 4,
-    "editor.insertSpaces": true,
+    "editor.insertSpaces": true
   },
   "rust-analyzer.linkedProjects": [
     "workspaces/rust/Cargo.toml"

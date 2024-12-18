@@ -7,13 +7,13 @@ public partial class TestCefMod : IDisposable
 {
     static Vector3? GetPlayerEntityPosition()
     {
-        var playerEntityHandle = GetPlayerEntityHandle();
+        var playerEntity = GetPlayerEntity();
 
-        if (playerEntityHandle == nint.Zero)
+        if (playerEntity == nint.Zero)
         {
             return null;
         }
 
-        return GetEntityPosition(playerEntityHandle);
+        return GetEntityPosition(playerEntity);
     }
 }

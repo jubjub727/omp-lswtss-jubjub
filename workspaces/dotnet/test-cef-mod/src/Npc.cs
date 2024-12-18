@@ -10,29 +10,29 @@ public partial class TestCefMod
     {
         public bool IsDisposed { get; private set; }
 
-        readonly ApiWorld.Handle _worldHandle;
+        ApiWorld.NativeHandle _world;
 
-        readonly apiEntity.Handle _handle;
+        ApiEntity.NativeHandle _entity;
 
-        readonly apiTransformComponent.Handle _transformComponentHandle;
+        ApiTransformComponent.NativeHandle _entityTransformComponent;
 
-        readonly RespawnContext.Handle _respawnContextHandle;
+        RespawnContext.NativeHandle _entityRespawnContext;
 
-        readonly RespawnController.Handle _respawnControllerHandle;
+        RespawnController.NativeHandle _entityRespawnController;
 
-        readonly AnimationRequestComponent.Handle _animationRequestComponentHandle;
+        AnimationRequestComponent.NativeHandle _entityAnimationRequestComponent;
 
-        readonly OpponentInfo.Handle _opponentInfoHandle;
+        OpponentInfo.NativeHandle _entityOpponentInfo;
 
-        readonly OpponentChooser.Handle _opponentChooserHandle;
+        OpponentChooser.NativeHandle _entityOpponentChooser;
 
-        readonly OpponentSelectorComponent.Handle _opponentSelectorComponentHandle;
+        OpponentSelectorComponent.NativeHandle _entityOpponentSelectorComponent;
 
-        readonly HorizontalCharacterMover.Handle _horizontalCharacterMoverHandle;
+        HorizontalCharacterMover.NativeHandle _entityHorizontalCharacterMover;
 
-        readonly NavLinkCapabilitiesComponent.Handle _navLinkCapabilitiesComponentHandle;
+        NavLinkCapabilitiesComponent.NativeHandle _entityNavLinkCapabilitiesComponent;
 
-        readonly NavRoute.Handle _navRouteHandle;
+        NavRoute.NativeHandle _navRoute;
 
         public bool IsBattleParticipant { get; set; }
 
@@ -40,61 +40,61 @@ public partial class TestCefMod
 
         public float MoveToBattleCenterBehaviorSpeed { get; set; }
 
-        public Npc(ApiWorld.Handle worldHandle, apiEntity.Handle prefabHandle)
+        public Npc(ApiWorld.NativeHandle world, ApiEntity.NativeHandle prefab)
         {
             IsDisposed = false;
 
-            _worldHandle = worldHandle;
+            _world = world;
 
-            _handle = prefabHandle.Clone();
+            _entity = prefab.Clone();
 
-            _handle.SetNoSerialise();
-            _handle.SetParent(_worldHandle.GetSceneGraphRoot());
+            _entity.SetNoSerialise();
+            _entity.SetParent(_world.GetSceneGraphRoot());
 
-            _transformComponentHandle = (apiTransformComponent.Handle)(nint)_handle.FindComponentByTypeName("apiTransformComponent");
+            _entityTransformComponent = (ApiTransformComponent.NativeHandle)_entity.FindComponentByTypeName(ApiTransformComponent.Info.ApiClassName);
 
-            if (_transformComponentHandle == nint.Zero)
+            if (_entityTransformComponent == nint.Zero)
             {
                 throw new InvalidOperationException();
             }
 
-            _respawnContextHandle = (RespawnContext.Handle)(nint)_handle.FindComponentByTypeNameRecursive("RespawnContext", false);
+            _entityRespawnContext = (RespawnContext.NativeHandle)_entity.FindComponentByTypeNameRecursive(RespawnContext.Info.ApiClassName, false);
 
-            if (_respawnContextHandle != nint.Zero)
+            if (_entityRespawnContext != nint.Zero)
             {
-                _respawnContextHandle.Disable();
+                _entityRespawnContext.Disable();
             }
 
-            _respawnControllerHandle = (RespawnController.Handle)(nint)_handle.FindComponentByTypeNameRecursive("RespawnController", false);
+            _entityRespawnController = (RespawnController.NativeHandle)_entity.FindComponentByTypeNameRecursive(RespawnController.Info.ApiClassName, false);
 
-            _opponentInfoHandle = (OpponentInfo.Handle)(nint)_handle.FindComponentByTypeNameRecursive("OpponentInfo", false);
+            _entityOpponentInfo = (OpponentInfo.NativeHandle)_entity.FindComponentByTypeNameRecursive(OpponentInfo.Info.ApiClassName, false);
 
-            _opponentChooserHandle = (OpponentChooser.Handle)(nint)_handle.FindComponentByTypeNameRecursive("OpponentChooser", false);
+            _entityOpponentChooser = (OpponentChooser.NativeHandle)_entity.FindComponentByTypeNameRecursive(OpponentChooser.Info.ApiClassName, false);
 
-            _opponentSelectorComponentHandle = (OpponentSelectorComponent.Handle)(nint)_handle.FindComponentByTypeNameRecursive("OpponentSelectorComponent", false);
+            _entityOpponentSelectorComponent = (OpponentSelectorComponent.NativeHandle)_entity.FindComponentByTypeNameRecursive(OpponentSelectorComponent.Info.ApiClassName, false);
 
-            _horizontalCharacterMoverHandle = (HorizontalCharacterMover.Handle)(nint)_handle.FindComponentByTypeNameRecursive("HorizontalCharacterMover", false);
+            _entityHorizontalCharacterMover = (HorizontalCharacterMover.NativeHandle)_entity.FindComponentByTypeNameRecursive(HorizontalCharacterMover.Info.ApiClassName, false);
 
-            _navLinkCapabilitiesComponentHandle = (NavLinkCapabilitiesComponent.Handle)(nint)_handle.FindComponentByTypeNameRecursive("NavLinkCapabilitiesComponent", false);
+            _entityNavLinkCapabilitiesComponent = (NavLinkCapabilitiesComponent.NativeHandle)_entity.FindComponentByTypeNameRecursive(NavLinkCapabilitiesComponent.Info.ApiClassName, false);
 
-            _animationRequestComponentHandle = (AnimationRequestComponent.Handle)(nint)_handle.FindComponentByTypeNameRecursive("AnimationRequestComponent", false);
+            _entityAnimationRequestComponent = (AnimationRequestComponent.NativeHandle)_entity.FindComponentByTypeNameRecursive(AnimationRequestComponent.Info.ApiClassName, false);
 
-            if (_animationRequestComponentHandle != nint.Zero && _respawnContextHandle != nint.Zero)
+            if (_entityAnimationRequestComponent != nint.Zero && _entityRespawnContext != nint.Zero)
             {
-                _animationRequestComponentHandle.RequestAnimation(_respawnContextHandle.get_RespawnAnim());
+                _entityAnimationRequestComponent.RequestAnimation(_entityRespawnContext.RespawnAnim);
             }
 
-            if (_navLinkCapabilitiesComponentHandle == nint.Zero)
+            if (_entityNavLinkCapabilitiesComponent == nint.Zero)
             {
-                _navRouteHandle = (NavRoute.Handle)nint.Zero;
+                _navRoute = (NavRoute.NativeHandle)nint.Zero;
             }
             else
             {
-                _navRouteHandle = NavRoute.CreateGlobalFunc.Execute();
+                _navRoute = NavRoute.Create();
 
-                _navRouteHandle.SetCapability(_navLinkCapabilitiesComponentHandle.Get());
-                _navRouteHandle.SetRadius(0.5f);
-                _navRouteHandle.SetDestinationRadius(0.5f);
+                _navRoute.SetCapability(_entityNavLinkCapabilitiesComponent.Get());
+                _navRoute.SetRadius(0.5f);
+                _navRoute.SetDestinationRadius(0.5f);
             }
 
             IsBattleParticipant = false;
@@ -118,42 +118,40 @@ public partial class TestCefMod
         {
             ThrowIfDisposed();
 
-            _transformComponentHandle.GetPosition(out var positionX, out var positionY, out var positionZ);
-
-            return new Vector3(positionX, positionY, positionZ);
+            return _entityTransformComponent.PositionNativeData.ToVector3();
         }
 
         public void SetPosition(Vector3 position)
         {
             ThrowIfDisposed();
 
-            _transformComponentHandle.SetPosition(position.X, position.Y, position.Z);
+            _entityTransformComponent.PositionNativeData = position.ToVec3();
         }
 
         public string? FetchFactionName()
         {
             ThrowIfDisposed();
 
-            if (_opponentInfoHandle == nint.Zero)
+            if (_entityOpponentInfo == nint.Zero)
             {
                 return null;
             }
 
-            var factionType = _opponentInfoHandle.GetFaction();
+            var factionType = _entityOpponentInfo.GetFaction();
 
             if (factionType == nint.Zero)
             {
                 return null;
             }
 
-            return factionType.get_FactionName();
+            return factionType.FactionName;
         }
 
         public void SetFactionId(NpcFactionId factionId)
         {
             ThrowIfDisposed();
 
-            if (_opponentInfoHandle == nint.Zero)
+            if (_entityOpponentInfo == nint.Zero)
             {
                 return;
             }
@@ -172,7 +170,7 @@ public partial class TestCefMod
                 return;
             }
 
-            _opponentInfoHandle.ChangeFaction(factionName);
+            _entityOpponentInfo.ChangeFaction(factionName);
         }
 
         void UpdateMoveToBattleCenterBehavior()
@@ -187,19 +185,19 @@ public partial class TestCefMod
                 return;
             }
 
-            if (_opponentSelectorComponentHandle == nint.Zero || _opponentSelectorComponentHandle.CalculateBest() != nint.Zero)
+            if (_entityOpponentSelectorComponent == nint.Zero || _entityOpponentSelectorComponent.CalculateBest() != nint.Zero)
             {
                 return;
             }
 
-            if (_horizontalCharacterMoverHandle == nint.Zero)
+            if (_entityHorizontalCharacterMover == nint.Zero)
             {
                 return;
             }
 
-            var aiSystemHandle = AISystem.GetFromCreateGlobalFunc.Execute(_worldHandle);
+            var aiSystem = ApiWorldSystemT__AISystem.GetFromCreate(_world);
 
-            if (aiSystemHandle == nint.Zero)
+            if (aiSystem == nint.Zero)
             {
                 return;
             }
@@ -211,49 +209,37 @@ public partial class TestCefMod
                 ||
                 (_lastBattleCenterPosition.Value - battleCenterPosition).Length() > 0.1f)
             {
-                var battleCenterPositionAsNuVec3 = battleCenterPosition.ToCApiNuVec3();
+                var battleCenterPositionAsVec3 = battleCenterPosition.ToVec3();
 
-                DestinationGoal.Handle destinationGoalHandle;
+                DestinationGoal.NativeHandle destinationGoal;
 
                 unsafe
                 {
-                    destinationGoalHandle = CreateDestinationGoalGlobalFunc.Execute((NuVec3.Handle)(nint)(&battleCenterPositionAsNuVec3));
+                    destinationGoal = DestinationGoal.Create(&battleCenterPositionAsVec3);
                 }
 
-                _navRouteHandle.SetGoal((BaseRouteGoal.Handle)(nint)destinationGoalHandle);
+                _navRoute.SetGoal(destinationGoal);
 
                 _lastBattleCenterPosition = battleCenterPosition;
             }
 
             var position = FetchPosition();
 
-            var positionAsNuVec3 = position.ToCApiNuVec3();
+            var positionAsVec3 = position.ToVec3();
 
             unsafe
             {
-                _navRouteHandle.SetStart(&positionAsNuVec3);
+                _navRoute.SetStart(&positionAsVec3);
             }
 
-            _navRouteHandle.Update(aiSystemHandle);
+            _navRoute.Update(aiSystem);
 
-            if (!_navRouteHandle.HasPath())
+            if (!_navRoute.HasPath())
             {
                 return;
             }
 
-            var moveToBattleCenterBehaviorDirectionAsNuVec3 = new NuVec3
-            {
-                X = 0f,
-                Y = 0f,
-                Z = 0f,
-            };
-
-            unsafe
-            {
-                _navRouteHandle.GetCurrentHeading2(&moveToBattleCenterBehaviorDirectionAsNuVec3);
-            }
-
-            var moveToBattleCenterBehaviorDirection = moveToBattleCenterBehaviorDirectionAsNuVec3.ToSystemNumericsVector3();
+            var moveToBattleCenterBehaviorDirection = _navRoute.GetCurrentHeading().ToVector3();
 
             if (
                 MathF.Abs(moveToBattleCenterBehaviorDirection.X)
@@ -279,11 +265,11 @@ public partial class TestCefMod
                 *
                 MoveToBattleCenterBehaviorSpeed;
 
-            var moveToBattleCenterBehaviorVelocityAsNuVec3 = moveToBattleCenterBehaviorVelocity.ToCApiNuVec3();
+            var moveToBattleCenterBehaviorVelocityAsVec3 = moveToBattleCenterBehaviorVelocity.ToVec3();
 
             unsafe
             {
-                _horizontalCharacterMoverHandle.SetMoveLaneVelocity(&moveToBattleCenterBehaviorVelocityAsNuVec3);
+                _entityHorizontalCharacterMover.SetMoveLaneVelocity(&moveToBattleCenterBehaviorVelocityAsVec3);
             }
 
             var moveToBattleCenterBehaviorAngle = MathF.Atan2(
@@ -291,14 +277,14 @@ public partial class TestCefMod
                 moveToBattleCenterBehaviorDirection.X
             ) * 180f / MathF.PI;
 
-            _transformComponentHandle.SetRotation(0f, 270f - moveToBattleCenterBehaviorAngle, 0f);
+            _entityTransformComponent.SetRotation(0f, 270f - moveToBattleCenterBehaviorAngle, 0f);
         }
 
         public void Update()
         {
             ThrowIfDisposed();
 
-            if (!_handle.IsActive())
+            if (!_entity.IsActive())
             {
                 Dispose();
                 return;
@@ -316,9 +302,9 @@ public partial class TestCefMod
 
             _npcs.Remove(this);
 
-            if (_handle.IsActive())
+            if (_entity.IsActive())
             {
-                _handle.DeferredDelete();
+                _entity.DeferredDelete();
             }
 
             IsDisposed = true;

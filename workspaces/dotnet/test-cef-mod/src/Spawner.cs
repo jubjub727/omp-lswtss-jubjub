@@ -32,11 +32,11 @@ public partial class TestCefMod
 
         DateTime? _lastSpawnNpcTaskTime;
 
-        PrefabResource? _hologramPrefabResource;
+        V1.PrefabResource? _hologramPrefabResource;
 
-        apiEntity.Handle _hologramHandle;
+        ApiEntity.NativeHandle _hologram;
 
-        apiTransformComponent.Handle _hologramTransformComponentHandle;
+        ApiTransformComponent.NativeHandle _hologramTransformComponent;
 
         float _hologramRotationY;
 
@@ -62,9 +62,9 @@ public partial class TestCefMod
 
             _hologramPrefabResource = null;
 
-            _hologramHandle = (apiEntity.Handle)nint.Zero;
+            _hologram = (ApiEntity.NativeHandle)nint.Zero;
 
-            _hologramTransformComponentHandle = (apiTransformComponent.Handle)nint.Zero;
+            _hologramTransformComponent = (ApiTransformComponent.NativeHandle)nint.Zero;
 
             _hologramRotationY = 0.0f;
 
@@ -98,9 +98,9 @@ public partial class TestCefMod
                 return;
             }
 
-            var currentApiWorldHandle = V1.GetCApi1CurrentApiWorldHandle();
+            var currentApiWorld = V1.GetCApi1CurrentApiWorld();
 
-            if (currentApiWorldHandle == nint.Zero)
+            if (currentApiWorld == nint.Zero)
             {
                 return;
             }
@@ -124,24 +124,23 @@ public partial class TestCefMod
 
             _hologramRotationY = (_hologramRotationY + 0.1f * (float)timeSinceLastHologramRotationUpdate.TotalMilliseconds) % 360.0f;
 
-            _hologramTransformComponentHandle.SetRotation(0f, _hologramRotationY, 0f);
+            _hologramTransformComponent.SetRotation(0f, _hologramRotationY, 0f);
 
             _hologramRotationLastUpdateTime = now;
 
-            var hologramNttRenderComponentHandle = (nttRenderTTExportObject.Handle)(nint)_hologramHandle.FindComponentByTypeName("nttRenderTTExportObject");
+            var hologramNttRenderComponent = (NttRenderTTExportObject.NativeHandle)_hologram.FindComponentByTypeName(NttRenderTTExportObject.Info.ApiClassName);
 
-            if (hologramNttRenderComponentHandle != nint.Zero)
+            if (hologramNttRenderComponent != nint.Zero)
             {
-                var hologramOpacity = IsActive ? 1.0f : 0.1f;
-                hologramNttRenderComponentHandle.set_HologramOpacity(ref hologramOpacity);
+                hologramNttRenderComponent.Opacity = IsActive ? 1.0f : 0.1f;
             }
         }
 
         void UpdateHologram()
         {
-            if (_hologramHandle != nint.Zero)
+            if (_hologram != nint.Zero)
             {
-                if (!_hologramHandle.IsActive())
+                if (!_hologram.IsActive())
                 {
                     Dispose();
                 }
@@ -153,7 +152,7 @@ public partial class TestCefMod
 
             if (_hologramPrefabResource == null)
             {
-                _hologramPrefabResource = new PrefabResource("Chars/Minifig/Hologram/Hologram.prefab_baked");
+                _hologramPrefabResource = new V1.PrefabResource("Chars/Minifig/Hologram/Hologram.prefab_baked");
             }
 
             if (!_hologramPrefabResource.FetchIsLoaded())
@@ -161,21 +160,21 @@ public partial class TestCefMod
                 return;
             }
 
-            var currentApiWorldHandle = V1.GetCApi1CurrentApiWorldHandle();
+            var currentApiWorld = V1.GetCApi1CurrentApiWorld();
 
-            if (currentApiWorldHandle == nint.Zero)
+            if (currentApiWorld == nint.Zero)
             {
                 return;
             }
 
-            _hologramHandle = _hologramPrefabResource.FetchPrefabHandle().Clone();
+            _hologram = _hologramPrefabResource.FetchCApi1Prefab().Clone();
 
-            _hologramHandle.SetNoSerialise();
-            _hologramHandle.SetParent(currentApiWorldHandle.GetSceneGraphRoot());
+            _hologram.SetNoSerialise();
+            _hologram.SetParent(currentApiWorld.GetSceneGraphRoot());
 
-            _hologramTransformComponentHandle = (apiTransformComponent.Handle)(nint)_hologramHandle.FindComponentByTypeName("apiTransformComponent");
+            _hologramTransformComponent = (ApiTransformComponent.NativeHandle)_hologram.FindComponentByTypeName(ApiTransformComponent.Info.ApiClassName);
 
-            _hologramTransformComponentHandle.SetPosition(Position.X, Position.Y, Position.Z);
+            _hologramTransformComponent.SetPosition(Position.X, Position.Y, Position.Z);
 
             UpdateHologramRotation();
         }
@@ -243,9 +242,9 @@ public partial class TestCefMod
                 return;
             }
 
-            if (_hologramHandle != nint.Zero && _hologramHandle.IsActive())
+            if (_hologram != nint.Zero && _hologram.IsActive())
             {
-                _hologramHandle.DeferredDelete();
+                _hologram.DeferredDelete();
             }
 
             _hologramPrefabResource?.Dispose();

@@ -31,20 +31,6 @@ public static class BuildCApi1
                 "bin",
                 "Release",
                 "net8.0",
-                "omp-lswtss-c-api1-foundation.dll"
-            ),
-            Path.Combine(
-                cApi1DistDirPath,
-                "omp-lswtss-c-api1-foundation.dll"
-            )
-        );
-
-        File.Copy(
-            Path.Combine(
-                GetCApi1MainDotnetPackageDirPath.Execute(),
-                "bin",
-                "Release",
-                "net8.0",
                 "omp-lswtss-c-api1-core.dll"
             ),
             Path.Combine(
@@ -91,15 +77,6 @@ public static class BuildCApi1
                 ["name"] = "CApi1",
                 ["actions"] = new JArray
                 {
-                    new JObject
-                    {
-                        ["typeId"] = "register-shared-assembly-action",
-                        ["payload"] = new JObject
-                        {
-                            ["name"] = "omp-lswtss-c-api1-foundation",
-                            ["path"] = "omp-lswtss-c-api1-foundation.dll",
-                        },
-                    },
                     new JObject
                     {
                         ["typeId"] = "register-shared-assembly-action",

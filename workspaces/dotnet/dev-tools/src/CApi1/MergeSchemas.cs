@@ -1,210 +1,121 @@
-using System.Collections.Generic;
 using System.Linq;
 
 namespace OMP.LSWTSS.CApi1;
 
 public static class MergeSchemas
 {
-    public static Schema Execute(IEnumerable<Schema> schemas)
+    public static void Execute(Schema finalSchema, Schema schema, bool additive)
     {
-        var finalSchema = new Schema
+        foreach (var classSchema in schema.Classes)
         {
-            Enums = [],
-            GlobalFuncs = [],
-            Classes = [],
-        };
+            var classFinalSchema = finalSchema.Classes.FirstOrDefault(x => x.Namespace == classSchema.Namespace && x.Name == classSchema.Name);
 
-        foreach (var schema in schemas)
-        {
-            foreach (var enumSchema in schema.Enums)
+            if (classFinalSchema == null)
             {
-                var enumFinalSchema = finalSchema.Enums.FirstOrDefault(x => x.Namespace == enumSchema.Namespace && x.Name == enumSchema.Name);
-
-                if (enumFinalSchema == null)
-                {
-                    finalSchema.Enums.Add(enumSchema);
-                    continue;
-                }
-            }
-
-            foreach (var globalFuncSchema in schema.GlobalFuncs)
-            {
-                var globalFuncFinalSchema = finalSchema.GlobalFuncs.FirstOrDefault(x => x.Namespace == globalFuncSchema.Namespace && x.Name == globalFuncSchema.Name);
-
-                if (globalFuncFinalSchema == null)
-                {
-                    finalSchema.GlobalFuncs.Add(globalFuncSchema);
-                    continue;
-                }
-
-                if (
-                    globalFuncSchema is IAngelScriptGlobalFuncSchema angelScriptGlobalFuncSchema
-                    &&
-                    globalFuncFinalSchema is IAngelScriptGlobalFuncSchema angelScriptGlobalFuncFinalSchema
-                )
-                {
-                    if (angelScriptGlobalFuncFinalSchema.SteamIndex == null && angelScriptGlobalFuncSchema.SteamIndex != null)
-                    {
-                        angelScriptGlobalFuncFinalSchema.SteamIndex = angelScriptGlobalFuncSchema.SteamIndex;
-                    }
-
-                    if (angelScriptGlobalFuncFinalSchema.EGSIndex == null && angelScriptGlobalFuncSchema.EGSIndex != null)
-                    {
-                        angelScriptGlobalFuncFinalSchema.EGSIndex = angelScriptGlobalFuncSchema.EGSIndex;
-                    }
-                }
-
-                if (
-                    globalFuncSchema is IGlobalNativeFuncSchema globalNativeFuncSchema
-                    &&
-                    globalFuncFinalSchema is IGlobalNativeFuncSchema globalNativeFuncFinalSchema
-                )
-                {
-                    if (globalNativeFuncFinalSchema.SteamOffset == null && globalNativeFuncSchema.SteamOffset != null)
-                    {
-                        globalNativeFuncFinalSchema.SteamOffset = globalNativeFuncSchema.SteamOffset;
-                    }
-
-                    if (globalNativeFuncFinalSchema.EGSOffset == null && globalNativeFuncSchema.EGSOffset != null)
-                    {
-                        globalNativeFuncFinalSchema.EGSOffset = globalNativeFuncSchema.EGSOffset;
-                    }
-                }
-            }
-
-            foreach (var classSchema in schema.Classes)
-            {
-                var classFinalSchema = finalSchema.Classes.FirstOrDefault(x => x.Namespace == classSchema.Namespace && x.Name == classSchema.Name);
-
-                if (classFinalSchema == null)
+                if (additive)
                 {
                     finalSchema.Classes.Add(classSchema);
+                }
+                continue;
+            }
+
+            if (
+                classFinalSchema is IVirtualClassSchema == false
+                &&
+                classSchema is IVirtualClassSchema
+            )
+            {
+                finalSchema.Classes.Remove(classFinalSchema);
+                if (classFinalSchema is RawClassSchema rawClassFinalSchema)
+                {
+                    classFinalSchema = new VirtualClassSchema
+                    {
+                        NativeVtableSteamRuntimeOffset = null,
+                        NativeVtableEGSRuntimeOffset = null,
+                        Namespace = rawClassFinalSchema.Namespace,
+                        Name = rawClassFinalSchema.Name,
+                        ParentClassRef = rawClassFinalSchema.ParentClassRef,
+                        NativeDataSize = rawClassFinalSchema.NativeDataSize,
+                        Fields = rawClassFinalSchema.Fields,
+                        Methods = rawClassFinalSchema.Methods,
+                    };
+                }
+                else if (classFinalSchema is RegisteredClassSchema registeredClassFinalSchema)
+                {
+                    classFinalSchema = new RegisteredVirtualClassSchema
+                    {
+                        ApiClassName = registeredClassFinalSchema.ApiClassName,
+                        Properties = registeredClassFinalSchema.Properties,
+                        NativeVtableSteamRuntimeOffset = null,
+                        NativeVtableEGSRuntimeOffset = null,
+                        Namespace = registeredClassFinalSchema.Namespace,
+                        Name = registeredClassFinalSchema.Name,
+                        ParentClassRef = registeredClassFinalSchema.ParentClassRef,
+                        NativeDataSize = registeredClassFinalSchema.NativeDataSize,
+                        Fields = registeredClassFinalSchema.Fields,
+                        Methods = registeredClassFinalSchema.Methods,
+                    };
+                }
+                finalSchema.Classes.Add(classFinalSchema);
+            }
+
+            if (
+                classFinalSchema is IVirtualClassSchema virtualClassFinalSchema
+                &&
+                classSchema is IVirtualClassSchema virtualClassSchema
+            )
+            {
+                if (virtualClassFinalSchema.NativeVtableSteamRuntimeOffset == null && virtualClassSchema.NativeVtableSteamRuntimeOffset != null)
+                {
+                    virtualClassFinalSchema.NativeVtableSteamRuntimeOffset = virtualClassSchema.NativeVtableSteamRuntimeOffset;
+                }
+
+                if (virtualClassFinalSchema.NativeVtableEGSRuntimeOffset == null && virtualClassSchema.NativeVtableEGSRuntimeOffset != null)
+                {
+                    virtualClassFinalSchema.NativeVtableEGSRuntimeOffset = virtualClassSchema.NativeVtableEGSRuntimeOffset;
+                }
+            }
+
+            if (classFinalSchema.Fields == null && classSchema.Fields != null)
+            {
+                classFinalSchema.Fields = classSchema.Fields;
+            }
+
+            foreach (var classMethodSchema in classSchema.Methods)
+            {
+                var classMethodFinalSchema = classFinalSchema.Methods.FirstOrDefault(x => x.Name == classMethodSchema.Name);
+
+                if (classMethodFinalSchema == null)
+                {
+                    if (additive)
+                    {
+                        classFinalSchema.Methods.Add(classMethodSchema);
+                    }
                     continue;
                 }
 
-                if (classFinalSchema.StructFields == null && classSchema.StructFields != null)
-                {
-                    classFinalSchema.StructFields = classSchema.StructFields;
-                }
-
-                if (classFinalSchema.Size == null && classSchema.Size != null)
-                {
-                    classFinalSchema.Size = classSchema.Size;
-                }
-
                 if (
-                    classSchema is IAngelScriptClassSchema angelScriptClassSchema
+                    classMethodFinalSchema is IClassRawMethodSchema classRawMethodFinalSchema
                     &&
-                    classFinalSchema is IAngelScriptClassSchema angelScriptClassFinalSchema
+                    classMethodSchema is IClassRawMethodSchema classRawMethodSchema
                 )
                 {
-                    if (angelScriptClassFinalSchema.SteamIndex == null && angelScriptClassSchema.SteamIndex != null)
+                    if (classRawMethodFinalSchema.NativeSteamRuntimeOffset == null && classRawMethodSchema.NativeSteamRuntimeOffset != null)
                     {
-                        angelScriptClassFinalSchema.SteamIndex = angelScriptClassSchema.SteamIndex;
+                        classRawMethodFinalSchema.NativeSteamRuntimeOffset = classRawMethodSchema.NativeSteamRuntimeOffset;
                     }
 
-                    if (angelScriptClassFinalSchema.EGSIndex == null && angelScriptClassSchema.EGSIndex != null)
+                    if (classRawMethodFinalSchema.NativeEGSRuntimeOffset == null && classRawMethodSchema.NativeEGSRuntimeOffset != null)
                     {
-                        angelScriptClassFinalSchema.EGSIndex = angelScriptClassSchema.EGSIndex;
-                    }
-
-                    foreach (var angelScriptClassMethodSchema in angelScriptClassSchema.Methods)
-                    {
-                        var angelScriptClassMethodFinalSchema = angelScriptClassFinalSchema.Methods.FirstOrDefault(x => x.Name == angelScriptClassMethodSchema.Name);
-
-                        if (angelScriptClassMethodFinalSchema == null)
-                        {
-                            angelScriptClassFinalSchema.Methods.Add(angelScriptClassMethodSchema);
-                            continue;
-                        }
-
-                        if (angelScriptClassMethodFinalSchema.SteamIndex == null && angelScriptClassMethodSchema.SteamIndex != null)
-                        {
-                            angelScriptClassMethodFinalSchema.SteamIndex = angelScriptClassMethodSchema.SteamIndex;
-                        }
-
-                        if (angelScriptClassMethodFinalSchema.EGSIndex == null && angelScriptClassMethodSchema.EGSIndex != null)
-                        {
-                            angelScriptClassMethodFinalSchema.EGSIndex = angelScriptClassMethodSchema.EGSIndex;
-                        }
-
-                        if (
-                            angelScriptClassMethodSchema is IAngelScriptClassNativeMethodSchema angelScriptClassNativeMethodSchema
-                            &&
-                            angelScriptClassMethodFinalSchema is IAngelScriptClassNativeMethodSchema angelScriptClassNativeMethodFinalSchema
-                        )
-                        {
-                            if (angelScriptClassNativeMethodFinalSchema.SteamOffset == null && angelScriptClassNativeMethodSchema.SteamOffset != null)
-                            {
-                                angelScriptClassNativeMethodFinalSchema.SteamOffset = angelScriptClassNativeMethodSchema.SteamOffset;
-                            }
-
-                            if (angelScriptClassNativeMethodFinalSchema.EGSOffset == null && angelScriptClassNativeMethodSchema.EGSOffset != null)
-                            {
-                                angelScriptClassNativeMethodFinalSchema.EGSOffset = angelScriptClassNativeMethodSchema.EGSOffset;
-                            }
-                        }
+                        classRawMethodFinalSchema.NativeEGSRuntimeOffset = classRawMethodSchema.NativeEGSRuntimeOffset;
                     }
                 }
 
-                if (
-                    classSchema is INativeClassSchema nativeClassSchema
-                    &&
-                    classFinalSchema is INativeClassSchema nativeClassFinalSchema
-                )
+                if (!classMethodFinalSchema.IsNativeReturnValueByParamOptimizationEnabled && classMethodSchema.IsNativeReturnValueByParamOptimizationEnabled)
                 {
-                    foreach (var nativeClassMethodSchema in nativeClassSchema.Methods)
-                    {
-                        var nativeClassMethodFinalSchema = nativeClassFinalSchema.Methods.FirstOrDefault(x => x.Name == nativeClassMethodSchema.Name);
-
-                        if (nativeClassMethodFinalSchema == null)
-                        {
-                            nativeClassFinalSchema.Methods.Add(nativeClassMethodSchema);
-                            continue;
-                        }
-
-                        if (
-                            nativeClassMethodSchema is INativeClassNativeMethodSchema nativeClassNativeMethodSchema
-                            &&
-                            nativeClassMethodFinalSchema is INativeClassNativeMethodSchema nativeClassNativeMethodFinalSchema
-                        )
-                        {
-                            if (nativeClassNativeMethodFinalSchema.SteamOffset == null && nativeClassNativeMethodSchema.SteamOffset != null)
-                            {
-                                nativeClassNativeMethodFinalSchema.SteamOffset = nativeClassNativeMethodSchema.SteamOffset;
-                            }
-
-                            if (nativeClassNativeMethodFinalSchema.EGSOffset == null && nativeClassNativeMethodSchema.EGSOffset != null)
-                            {
-                                nativeClassNativeMethodFinalSchema.EGSOffset = nativeClassNativeMethodSchema.EGSOffset;
-                            }
-                        }
-                    }
-                }
-
-                foreach (var classFieldSchema in classSchema.Fields)
-                {
-                    var classFieldFinalSchema = classFinalSchema.Fields.FirstOrDefault(x => x.Name == classFieldSchema.Name);
-
-                    if (classFieldFinalSchema == null)
-                    {
-                        classFinalSchema.Fields.Add(classFieldSchema);
-                        continue;
-                    }
-
-                    if (classFieldFinalSchema.SteamOffset == null && classFieldSchema.SteamOffset != null)
-                    {
-                        classFieldFinalSchema.SteamOffset = classFieldSchema.SteamOffset;
-                    }
-
-                    if (classFieldFinalSchema.EGSOffset == null && classFieldSchema.EGSOffset != null)
-                    {
-                        classFieldFinalSchema.EGSOffset = classFieldSchema.EGSOffset;
-                    }
+                    classMethodFinalSchema.IsNativeReturnValueByParamOptimizationEnabled = true;
                 }
             }
         }
-
-        return finalSchema;
     }
 }

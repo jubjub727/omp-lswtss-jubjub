@@ -6,13 +6,14 @@ namespace OMP.LSWTSS;
 public class DebugTools
 {
     readonly Assembly _runtimeEngineAssembly;
-    readonly CFuncHook1<GameFramework.UpdateMethod.Delegate> _gameFrameworkUpdateMethodHook;
+
+    readonly CFuncHook1<GameFramework.ProcessMethod.NativeDelegate> _gameFrameworkProcessMethodHook;
 
     volatile bool _isRefreshShortcutTriggered = false;
 
-    bool _isRefreshShortcutShiftKeyTriggered = false;
+    bool _isRefreshShortcutShiftKeyPressed = false;
 
-    bool _isRefreshShortcutRKeyTriggered = false;
+    bool _isRefreshShortcutRKeyPressed = false;
 
     public DebugTools()
     {
@@ -28,30 +29,30 @@ public class DebugTools
                 {
                     if ((PInvoke.User32.VirtualKey)inputHookClientNativeMessage.WParam == PInvoke.User32.VirtualKey.VK_SHIFT)
                     {
-                        _isRefreshShortcutShiftKeyTriggered = true;
+                        _isRefreshShortcutShiftKeyPressed = true;
                     }
                     if ((PInvoke.User32.VirtualKey)inputHookClientNativeMessage.WParam == PInvoke.User32.VirtualKey.VK_R)
                     {
-                        _isRefreshShortcutRKeyTriggered = true;
+                        _isRefreshShortcutRKeyPressed = true;
                     }
 
-                    if (_isRefreshShortcutShiftKeyTriggered && _isRefreshShortcutRKeyTriggered)
+                    if (_isRefreshShortcutShiftKeyPressed && _isRefreshShortcutRKeyPressed)
                     {
                         _isRefreshShortcutTriggered = true;
 
-                        _isRefreshShortcutShiftKeyTriggered = false;
-                        _isRefreshShortcutRKeyTriggered = false;
+                        _isRefreshShortcutShiftKeyPressed = false;
+                        _isRefreshShortcutRKeyPressed = false;
                     }
                 }
                 else if ((PInvoke.User32.WindowMessage)inputHookClientNativeMessage.Type == PInvoke.User32.WindowMessage.WM_KEYUP)
                 {
                     if ((PInvoke.User32.VirtualKey)inputHookClientNativeMessage.WParam == PInvoke.User32.VirtualKey.VK_SHIFT)
                     {
-                        _isRefreshShortcutShiftKeyTriggered = false;
+                        _isRefreshShortcutShiftKeyPressed = false;
                     }
                     if ((PInvoke.User32.VirtualKey)inputHookClientNativeMessage.WParam == PInvoke.User32.VirtualKey.VK_R)
                     {
-                        _isRefreshShortcutRKeyTriggered = false;
+                        _isRefreshShortcutRKeyPressed = false;
                     }
                 }
 
@@ -59,9 +60,9 @@ public class DebugTools
             }
         );
 
-        _gameFrameworkUpdateMethodHook = new(
-            GameFramework.UpdateMethod.Ptr,
-            (handle) =>
+        _gameFrameworkProcessMethodHook = new(
+            GameFramework.ProcessMethod.Info.NativePtr,
+            (nativeRawDataPtr) =>
             {
                 if (_isRefreshShortcutTriggered)
                 {
@@ -71,10 +72,10 @@ public class DebugTools
                     _isRefreshShortcutTriggered = false;
                 }
 
-                return _gameFrameworkUpdateMethodHook!.Trampoline!(handle);
+                return _gameFrameworkProcessMethodHook!.Trampoline!(nativeRawDataPtr);
             }
         );
 
-        _gameFrameworkUpdateMethodHook.Enable();
+        _gameFrameworkProcessMethodHook.Enable();
     }
 }

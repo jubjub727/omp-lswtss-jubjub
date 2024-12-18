@@ -6,7 +6,7 @@ namespace OMP.LSWTSS;
 
 public static class RunGame
 {
-    public static void Execute(string gameDirPath, CApi1.Variant cApi1Variant)
+    public static void Execute(string gameDirPath, GameKind gameKind)
     {
         var gameProcess = new Process
         {
@@ -20,7 +20,7 @@ public static class RunGame
             }
         };
 
-        if (cApi1Variant == CApi1.Variant.Steam)
+        if (gameKind == GameKind.SteamGame)
         {
             gameProcess.StartInfo.Environment["SteamClientLaunch"] = "1";
             gameProcess.StartInfo.Environment["SteamNoOverlayUI"] = "1";
@@ -29,7 +29,7 @@ public static class RunGame
             gameProcess.StartInfo.Environment["SteamOverlayGameId"] = "920210";
             gameProcess.StartInfo.Environment["SteamEnv"] = "1";
         }
-        else if (cApi1Variant == CApi1.Variant.EGS)
+        else if (gameKind == GameKind.EGSGame)
         {
             gameProcess.StartInfo.ArgumentList.Add("-epicapp=c390e58246ea4a778acd26473a489b48");
         }

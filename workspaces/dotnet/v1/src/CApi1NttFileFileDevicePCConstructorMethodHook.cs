@@ -1,20 +1,24 @@
 using System;
+using System.Runtime.InteropServices;
+using OMP.LSWTSS.CApi1;
 
 namespace OMP.LSWTSS;
 
 public static partial class V1
 {
-    static readonly CFuncHook1<CApi1.nttFile.FileDevicePC.ConstructorMethod.Delegate> cApi1NttFileFileDevicePCConstructorMethodHook = new(
-        CApi1.nttFile.FileDevicePC.ConstructorMethod.Ptr,
-        (handle, param0, param1) =>
+    static readonly CFuncHook1<NttFile.FileDevicePC.ConstructorMethod.NativeDelegate> _cApi1NttFileFileDevicePCConstructorMethodHook = new(
+        NttFile.FileDevicePC.ConstructorMethod.Info.NativePtr,
+        (nativeDataRawPtr, arg0, arg1) =>
         {
-            if (param0 == "host:")
+            var arg0AsString = Marshal.PtrToStringUTF8(arg0);
+
+            if (arg0AsString == "host:")
             {
-                Console.WriteLine("Acquired nttFileHostFileDevicePCHandle");
-                cApi1NttFileHostFileDevicePCHandle = handle;
+                Console.WriteLine("Acquired NttFileHostFileDevicePC");
+                _cApi1NttFileHostFileDevicePC = (NttFile.FileDevicePC.NativeHandle)nativeDataRawPtr;
             }
 
-            return cApi1NttFileFileDevicePCConstructorMethodHook!.Trampoline!(handle, param0, param1);
+            return _cApi1NttFileFileDevicePCConstructorMethodHook!.Trampoline!(nativeDataRawPtr, arg0, arg1);
         }
     );
 }

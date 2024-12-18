@@ -307,6 +307,50 @@
       }
     },
     {
+      "label": "build-galaxy-unleashed",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "run",
+        "--",
+        "build-galaxy-unleashed",
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+      },
+      "options": {
+        "cwd": "${workspaceFolder}/workspaces/dotnet/dev-tools"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "build-and-install-galaxy-unleashed",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "run",
+        "--",
+        "install-galaxy-unleashed",
+        "${input:gameDirPath}",
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+      },
+      "options": {
+        "cwd": "${workspaceFolder}/workspaces/dotnet/dev-tools"
+      },
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": "workspaces/dotnet/galaxy-unleashed/**/*.cs"
+      },
+      "dependsOn": [
+        "build-galaxy-unleashed"
+      ]
+    },
+    {
       "label": "build-bundle",
       "type": "shell",
       "command": "dotnet",

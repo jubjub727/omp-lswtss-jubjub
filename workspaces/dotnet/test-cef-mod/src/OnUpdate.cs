@@ -8,20 +8,24 @@ public partial class TestCefMod
 {
     static void OnUpdate()
     {
-        var currentApiWorldHandle = V1.GetCApi1CurrentApiWorldHandle();
+        var currentApiWorld = V1.GetCApi1CurrentApiWorld();
 
-        if (currentApiWorldHandle == nint.Zero)
+        if (currentApiWorld == nint.Zero)
         {
             return;
         }
 
-        var nttUniverseProcessingScopeHandle = (nttUniverseProcessingScope.Handle)Marshal.AllocHGlobal(nttUniverseProcessingScope.StructSize);
+        var universeProcessingScopeHandle = (NttUniverseProcessingScope.NativeHandle)Marshal.AllocHGlobal(
+            Marshal.SizeOf<NttUniverseProcessingScope.NativeData>()
+        );
 
-        nttUniverseProcessingScopeHandle.Constructor(currentApiWorldHandle.GetUniverse(), true);
+        universeProcessingScopeHandle.Constructor(currentApiWorld.GetUniverse(), true);
 
-        var apiWorldProcessingScopeHandle = (ApiWorldProcessingScope.Handle)Marshal.AllocHGlobal(nttUniverseProcessingScope.StructSize);
+        var apiWorldProcessingScopeHandle = (ApiWorldProcessingScope.NativeHandle)Marshal.AllocHGlobal(
+            Marshal.SizeOf<ApiWorldProcessingScope.NativeData>()
+        );
 
-        apiWorldProcessingScopeHandle.Constructor(currentApiWorldHandle, true);
+        apiWorldProcessingScopeHandle.Constructor(currentApiWorld, true);
 
         if (_charactersInfo == null)
         {
@@ -51,8 +55,8 @@ public partial class TestCefMod
 
         Marshal.FreeHGlobal(apiWorldProcessingScopeHandle);
 
-        nttUniverseProcessingScopeHandle.Destructor();
+        universeProcessingScopeHandle.Destructor();
 
-        Marshal.FreeHGlobal(nttUniverseProcessingScopeHandle);
+        Marshal.FreeHGlobal(universeProcessingScopeHandle);
     }
 }

@@ -15,7 +15,7 @@ public partial class TestCefMod
 
         readonly bool _isGlobal;
 
-        PrefabResource? _npcPrefabResource;
+        V1.PrefabResource? _npcPrefabResource;
 
         public Npc? Npc { get; private set; }
 
@@ -60,21 +60,21 @@ public partial class TestCefMod
                 return;
             }
 
-            _npcPrefabResource ??= new PrefabResource(_npcConfig.PrefabResourcePath);
+            _npcPrefabResource ??= new V1.PrefabResource(_npcConfig.PrefabResourcePath);
 
             if (!_npcPrefabResource.FetchIsLoaded())
             {
                 return;
             }
 
-            var currentApiWorldHandle = V1.GetCApi1CurrentApiWorldHandle();
+            var currentApiWorld = V1.GetCApi1CurrentApiWorld();
 
-            if (currentApiWorldHandle == nint.Zero)
+            if (currentApiWorld == nint.Zero)
             {
                 return;
             }
 
-            Npc = new Npc(currentApiWorldHandle, _npcPrefabResource.FetchPrefabHandle());
+            Npc = new Npc(currentApiWorld, _npcPrefabResource.FetchCApi1Prefab());
 
             Npc.SetPosition(_npcPosition);
             Npc.IsBattleParticipant = _npcConfig.IsBattleParticipant;

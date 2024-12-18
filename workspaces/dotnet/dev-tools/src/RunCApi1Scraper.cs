@@ -4,7 +4,7 @@ namespace OMP.LSWTSS;
 
 public static class RunCApi1Scraper
 {
-    public static void Execute(string gameDirPath, CApi1.Variant cApi1Variant)
+    public static void Execute(string gameDirPath, GameKind gameKind)
     {
         BuildDriverDinput8RustPackage.Execute();
         InstallDriverDinput8Library.Execute(gameDirPath);
@@ -41,6 +41,6 @@ public static class RunCApi1Scraper
             }
         );
 
-        RunGame.Execute(gameDirPath, cApi1Variant);
+        RunGame.Execute(gameDirPath, gameKind);
     }
 }

@@ -6,31 +6,20 @@ namespace OMP.LSWTSS;
 
 public partial class TestCefMod : IDisposable
 {
-    static Vector3? GetEntityPosition(apiEntity.Handle entityHandle)
+    static Vector3? GetEntityPosition(ApiEntity.NativeHandle entity)
     {
-        if (entityHandle == nint.Zero)
+        if (entity == nint.Zero)
         {
             return null;
         }
 
-        var entityTransformComponentHandle = (apiTransformComponent.Handle)(nint)entityHandle.FindComponentByTypeName("apiTransformComponent");
+        var entityTransformComponent = (ApiTransformComponent.NativeHandle)entity.FindComponentByTypeName(ApiTransformComponent.Info.ApiClassName);
 
-        if (entityTransformComponentHandle == nint.Zero)
+        if (entityTransformComponent == nint.Zero)
         {
             return null;
         }
 
-        entityTransformComponentHandle.GetPosition(
-            out var entityPositionX,
-            out var entityPositionY,
-            out var entityPositionZ
-        );
-
-        return new Vector3
-        {
-            X = entityPositionX,
-            Y = entityPositionY,
-            Z = entityPositionZ
-        };
+        return entityTransformComponent.PositionNativeData.ToVector3();
     }
 }

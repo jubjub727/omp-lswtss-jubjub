@@ -70,7 +70,7 @@ public static class BuildDebugTools
                         ["payload"] = new JObject
                         {
                             ["typeName"] = "OMP.LSWTSS.DebugTools",
-                            ["assemblyPath"] = "lswtss-omp-debug-tools.dll",
+                            ["assemblyPath"] = "omp-lswtss-debug-tools.dll",
                         },
                     },
                 },

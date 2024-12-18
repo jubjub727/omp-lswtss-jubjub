@@ -1,8 +1,10 @@
 namespace OMP.LSWTSS.CApi1;
 
-public sealed class ClassTypeSchema : IClassTypeSchema
+public sealed class ClassTypeSchema : ITypeSchema
 {
-    public required string ClassName { get; set; }
+    public required string ClassFullName { get; set; }
 
-    public required string? ClassNamespace { get; set; }
+    public required string? ClassGenerics { get; set; }
+
+    public required bool IsClassNativeHandle { get; set; }
 }

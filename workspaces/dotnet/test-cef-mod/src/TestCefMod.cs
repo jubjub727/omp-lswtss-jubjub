@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using System.Reflection;
 using OMP.LSWTSS.CApi1;
 
 namespace OMP.LSWTSS;
@@ -11,7 +10,7 @@ public partial class TestCefMod : IDisposable
 
     readonly InputHook1.Client _inputHookClient;
 
-    readonly CFuncHook1<GameFramework.UpdateMethod.Delegate> _gameFrameworkUpdateMethodHook;
+    readonly CFuncHook1<GameFramework.ProcessMethod.NativeDelegate> _gameFrameworkProcessMethodHook;
 
     bool _isDisposed;
 
@@ -74,9 +73,9 @@ public partial class TestCefMod : IDisposable
             }
         );
 
-        _gameFrameworkUpdateMethodHook = new(
-            GameFramework.UpdateMethod.Ptr,
-            (handle) =>
+        _gameFrameworkProcessMethodHook = new(
+            GameFramework.ProcessMethod.Info.NativePtr,
+            (nativeDataRawPtr) =>
             {
                 try
                 {
@@ -86,11 +85,11 @@ public partial class TestCefMod : IDisposable
                 {
                     Console.WriteLine(e);
                 }
-                return _gameFrameworkUpdateMethodHook!.Trampoline!(handle);
+                return _gameFrameworkProcessMethodHook!.Trampoline!(nativeDataRawPtr);
             }
         );
 
-        _gameFrameworkUpdateMethodHook.Enable();
+        _gameFrameworkProcessMethodHook.Enable();
     }
 
     void LoadOverlay()
@@ -125,7 +124,7 @@ public partial class TestCefMod : IDisposable
             return;
         }
 
-        _gameFrameworkUpdateMethodHook.Dispose();
+        _gameFrameworkProcessMethodHook.Dispose();
 
         _inputHookClient.Dispose();
 

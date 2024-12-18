@@ -4,24 +4,50 @@ public static class GenerateCApi1MainDotnetPackageSrcFiles
 {
     public static void Execute()
     {
+        var cApi1Schema = CApi1.ReadPackageSchemaFile.Execute(
+            GetCApi1MainDotnetPackageDirPath.Execute(),
+            "SteamSchema.json"
+        );
+
+        CApi1.MergeSchemas.Execute(
+            cApi1Schema,
+            CApi1.ReadPackageSchemaFile.Execute(
+                GetCApi1MainDotnetPackageDirPath.Execute(),
+                "EGSSchema.json"
+            ),
+            false
+        );
+
+        CApi1.MergeSchemas.Execute(
+            cApi1Schema,
+            CApi1.ReadPackageSchemaFile.Execute(
+                GetCApi1MainDotnetPackageDirPath.Execute(),
+                "CustomSchema.json"
+            ),
+            true
+        );
+
+        CApi1.MergeSchemas.Execute(
+            cApi1Schema,
+            CApi1.ReadPackageSchemaFile.Execute(
+                GetCApi1MainDotnetPackageDirPath.Execute(),
+                "SteamVtableSchema.json"
+            ),
+            false
+        );
+
+        CApi1.MergeSchemas.Execute(
+            cApi1Schema,
+            CApi1.ReadPackageSchemaFile.Execute(
+                GetCApi1MainDotnetPackageDirPath.Execute(),
+                "EGSVtableSchema.json"
+            ),
+            false
+        );
+
         CApi1.GeneratePackageSrcFiles.Execute(
             GetCApi1MainDotnetPackageDirPath.Execute(),
-            CApi1.MergeSchemas.Execute(
-                [
-                    CApi1.ReadPackageSchemaFile.Execute(
-                        GetCApi1MainDotnetPackageDirPath.Execute(),
-                        "AngelScriptSchema.Steam.json"
-                    ),
-                    CApi1.ReadPackageSchemaFile.Execute(
-                        GetCApi1MainDotnetPackageDirPath.Execute(),
-                        "AngelScriptSchema.EGS.json"
-                    ),
-                    CApi1.ReadPackageSchemaFile.Execute(
-                        GetCApi1MainDotnetPackageDirPath.Execute(),
-                        "CustomSchema.json"
-                    )
-                ]
-            )
+            cApi1Schema
         );
     }
 }

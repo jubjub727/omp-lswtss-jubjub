@@ -5,29 +5,29 @@ namespace OMP.LSWTSS;
 
 public partial class TestCefMod : IDisposable
 {
-    static apiEntity.Handle GetPlayerEntityHandle()
+    static ApiEntity.NativeHandle GetPlayerEntity()
     {
-        var currentApiWorldHandle = V1.GetCApi1CurrentApiWorldHandle();
+        var currentApiWorld = V1.GetCApi1CurrentApiWorld();
 
-        if (currentApiWorldHandle == nint.Zero)
+        if (currentApiWorld == nint.Zero)
         {
-            return (apiEntity.Handle)nint.Zero;
+            return (ApiEntity.NativeHandle)nint.Zero;
         }
 
-        var nttUniverseHandle = currentApiWorldHandle.GetUniverse();
+        var currentApiWorldUniverse = currentApiWorld.GetUniverse();
 
-        if (nttUniverseHandle == nint.Zero)
+        if (currentApiWorldUniverse == nint.Zero)
         {
-            return (apiEntity.Handle)nint.Zero;
+            return (ApiEntity.NativeHandle)nint.Zero;
         }
 
-        var playerControlSystemHandle = PlayerControlSystem.GetFromGlobalFunc.Execute(nttUniverseHandle);
+        var playerControlSystem = NttUniverseSystemT__PlayerControlSystem.GetFrom(currentApiWorldUniverse);
 
-        if (playerControlSystemHandle == nint.Zero)
+        if (playerControlSystem == nint.Zero)
         {
-            return (apiEntity.Handle)nint.Zero;
+            return (ApiEntity.NativeHandle)nint.Zero;
         }
 
-        return playerControlSystemHandle.GetPlayerEntityForPlayerIdx(0);
+        return PlayerControlSystem.GetPlayerEntityForPlayerIdx(playerControlSystem, 0);
     }
 }

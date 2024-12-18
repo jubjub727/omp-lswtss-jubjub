@@ -2,18 +2,18 @@ namespace OMP.LSWTSS.CApi1;
 
 public class SrcBuilder
 {
-    private readonly System.Text.StringBuilder stringBuilder;
+    private readonly System.Text.StringBuilder _stringBuilder;
 
-    public int Ident { get; set; }
+    public int Indent { get; set; }
 
     public SrcBuilder()
     {
-        stringBuilder = new System.Text.StringBuilder();
+        _stringBuilder = new System.Text.StringBuilder();
     }
 
     public void Append()
     {
-        stringBuilder.Append('\n');
+        _stringBuilder.Append('\n');
     }
 
     public void Append(string? value)
@@ -27,15 +27,15 @@ public class SrcBuilder
         {
             if (line != "")
             {
-                stringBuilder.Append(new string(' ', Ident * 4));
-                stringBuilder.Append(line);
+                _stringBuilder.Append(new string(' ', Indent * 4));
+                _stringBuilder.Append(line);
             }
-            stringBuilder.Append('\n');
+            _stringBuilder.Append('\n');
         }
     }
 
     public override string ToString()
     {
-        return stringBuilder.ToString();
+        return _stringBuilder.ToString();
     }
 }

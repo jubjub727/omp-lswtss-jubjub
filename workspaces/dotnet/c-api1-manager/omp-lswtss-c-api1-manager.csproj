@@ -6,7 +6,6 @@
       <Private>false</Private>
     </Reference>
     <ProjectReference Include="..\c-api1-core\omp-lswtss-c-api1-core.csproj" />
-    <ProjectReference Include="..\c-api1-main\omp-lswtss-c-api1-main.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

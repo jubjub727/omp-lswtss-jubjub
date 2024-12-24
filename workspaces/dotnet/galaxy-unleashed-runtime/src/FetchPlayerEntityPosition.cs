@@ -4,15 +4,15 @@ namespace OMP.LSWTSS;
 
 public partial class GalaxyUnleashed
 {
-    Vector3? GetPlayerEntityPosition()
+    Vector3? FetchPlayerEntityPosition()
     {
-        var playerEntity = GetPlayerEntity();
+        var playerEntity = FetchPlayerEntity();
 
         if (playerEntity == nint.Zero)
         {
             return null;
         }
 
-        return GetEntityPosition(playerEntity);
+        return FetchEntityPosition(playerEntity);
     }
 }

@@ -5,7 +5,7 @@ namespace OMP.LSWTSS;
 
 public partial class GalaxyUnleashed
 {
-    Vector3? GetEntityPosition(ApiEntity.NativeHandle entity)
+    Vector3? FetchEntityPosition(ApiEntity.NativeHandle entity)
     {
         if (entity == nint.Zero)
         {

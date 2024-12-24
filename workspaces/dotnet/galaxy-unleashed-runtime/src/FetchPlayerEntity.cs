@@ -4,7 +4,7 @@ namespace OMP.LSWTSS;
 
 public partial class GalaxyUnleashed
 {
-    ApiEntity.NativeHandle GetPlayerEntity()
+    ApiEntity.NativeHandle FetchPlayerEntity()
     {
         var currentApiWorld = V1.GetCApi1CurrentApiWorld();
 

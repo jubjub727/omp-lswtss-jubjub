@@ -207,7 +207,7 @@ public partial class GalaxyUnleashed
 
             UpdateHologram();
 
-            var playerEntityPosition = _instance!.GetPlayerEntityPosition();
+            var playerEntityPosition = _instance!.FetchPlayerEntityPosition();
 
             DistanceToPlayerEntity = playerEntityPosition == null ? null : Vector3.Distance(playerEntityPosition.Value, Position);
 

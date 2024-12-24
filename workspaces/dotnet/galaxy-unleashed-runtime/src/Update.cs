@@ -19,7 +19,7 @@ public partial class GalaxyUnleashed
         {
             UpdateCharactersInfo();
 
-            _playerEntityLastPosition = GetPlayerEntityPosition();
+            _playerEntityLastPosition = FetchPlayerEntityPosition();
 
             _closestNpcSpawnerInPlayerEntityRange = _npcSpawners
                 .Where(npcSpawner => npcSpawner.IsInPlayerEntityRange)

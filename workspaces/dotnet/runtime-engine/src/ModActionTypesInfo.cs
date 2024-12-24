@@ -57,19 +57,48 @@ public static partial class RuntimeEngine
                     modActionPayloadAsJson
                 ) ?? throw new InvalidOperationException();
 
-                _scriptingModuleContexts!.Add(
-                    new ScriptingModuleContext
+                var scriptingModuleContext = new ScriptingModuleContext
+                {
+                    ScriptingModuleInfo = new ScriptingModuleInfo
                     {
-                        ScriptingModuleInfo = new ScriptingModuleInfo
+                        TypeName = modRegisterScriptingModuleActionPayload.TypeName,
+                        AssemblyPath = Path.Combine(
+                            modDirPath,
+                            modRegisterScriptingModuleActionPayload.AssemblyPath
+                        ),
+                    },
+                };
+
+                if (Environment.GetEnvironmentVariable("DEV_" + modId.Replace('-', '_').ToUpper()) == "1")
+                {
+                    scriptingModuleContext.ScriptingModuleAssemblyWatcher = new FileSystemWatcher(
+                        Path.GetDirectoryName(scriptingModuleContext.ScriptingModuleInfo.AssemblyPath) ?? throw new InvalidOperationException()
+                    )
+                    {
+                        NotifyFilter = NotifyFilters.Attributes
+                            | NotifyFilters.CreationTime
+                            | NotifyFilters.LastWrite
+                            | NotifyFilters.Size,
+                    };
+
+                    scriptingModuleContext.ScriptingModuleAssemblyWatcher.Created += (_, eArgs) =>
+                    {
+                        if (eArgs.Name == Path.GetFileName(scriptingModuleContext.ScriptingModuleInfo.AssemblyPath))
                         {
-                            TypeName = modRegisterScriptingModuleActionPayload.TypeName,
-                            AssemblyPath = Path.Combine(
-                                modDirPath,
-                                modRegisterScriptingModuleActionPayload.AssemblyPath
-                            ),
-                        },
-                    }
-                );
+                            scriptingModuleContext.ScriptingModuleAssemblyChangedDateTime = DateTime.Now;
+                        }
+                    };
+                    scriptingModuleContext.ScriptingModuleAssemblyWatcher.Changed += (_, eArgs) =>
+                    {
+                        if (eArgs.Name == Path.GetFileName(scriptingModuleContext.ScriptingModuleInfo.AssemblyPath))
+                        {
+                            scriptingModuleContext.ScriptingModuleAssemblyChangedDateTime = DateTime.Now;
+                        }
+                    };
+                    scriptingModuleContext.ScriptingModuleAssemblyWatcher.EnableRaisingEvents = true;
+                }
+
+                _scriptingModuleContexts!.Add(scriptingModuleContext);
             }
         },
         new ModActionTypeInfo

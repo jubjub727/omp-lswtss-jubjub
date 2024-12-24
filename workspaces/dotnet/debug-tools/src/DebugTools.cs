@@ -60,17 +60,23 @@ public class DebugTools
             }
         );
 
+        var runtimeEngineUnloadUnloadableScriptingModulesMethodInfo = _runtimeEngineAssembly.GetType("OMP.LSWTSS.RuntimeEngine")!.GetMethod("UnloadUnloadableScriptingModules")!;
+        var runtimeEngineLoadUnloadedScriptingModulesMethodInfo = _runtimeEngineAssembly.GetType("OMP.LSWTSS.RuntimeEngine")!.GetMethod("LoadUnloadedScriptingModules")!;
+        var runtimeEngineReloadUnloadableScriptingModulesIfChangedMethodInfo = _runtimeEngineAssembly.GetType("OMP.LSWTSS.RuntimeEngine")!.GetMethod("ReloadUnloadableScriptingModulesIfChanged")!;
+
         _gameFrameworkProcessMethodHook = new(
             GameFramework.ProcessMethod.Info.NativePtr,
             (nativeRawDataPtr) =>
             {
                 if (_isRefreshShortcutTriggered)
                 {
-                    _runtimeEngineAssembly.GetType("OMP.LSWTSS.RuntimeEngine")!.GetMethod("UnloadUnloadableScriptingModules")!.Invoke(null, null);
-                    _runtimeEngineAssembly.GetType("OMP.LSWTSS.RuntimeEngine")!.GetMethod("LoadUnloadedScriptingModules")!.Invoke(null, null);
+                    runtimeEngineUnloadUnloadableScriptingModulesMethodInfo.Invoke(null, null);
+                    runtimeEngineLoadUnloadedScriptingModulesMethodInfo.Invoke(null, null);
 
                     _isRefreshShortcutTriggered = false;
                 }
+
+                runtimeEngineReloadUnloadableScriptingModulesIfChangedMethodInfo.Invoke(null, null);
 
                 return _gameFrameworkProcessMethodHook!.Trampoline!(nativeRawDataPtr);
             }

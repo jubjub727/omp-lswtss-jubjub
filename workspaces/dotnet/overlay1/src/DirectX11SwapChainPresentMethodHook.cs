@@ -2,10 +2,10 @@ namespace OMP.LSWTSS;
 
 partial class Overlay1
 {
-    readonly static CFuncHook1<DirectX11Bindings.SwapChainPresentMethodDelegate> _directX11SwapChainPresentMethodHook = new(
-        DirectX11Bindings.SwapChainPresentMethodPtr,
+    readonly static CFuncHook1<DirectX11Bindings.SwapChainPresentMethodNativeDelegate> _directX11SwapChainPresentMethodHook = new(
+        DirectX11Bindings.SwapChainPresentMethodNativePtr,
         (
-            swapChainHandle,
+            swapChainNativeHandle,
             syncInterval,
             flags
         ) =>
@@ -15,13 +15,13 @@ partial class Overlay1
                 if (
                     instance._directX11OverlayQuad == null
                     ||
-                    instance._directX11OverlayQuad.SwapChain.NativePointer != swapChainHandle
+                    instance._directX11OverlayQuad.SwapChain.NativePointer != swapChainNativeHandle
                 )
                 {
                     instance._directX11OverlayQuad?.Dispose();
 
                     instance._directX11OverlayQuad = new DirectX11OverlayQuad(
-                        new SharpDX.DXGI.SwapChain(swapChainHandle)
+                        new SharpDX.DXGI.SwapChain(swapChainNativeHandle)
                     );
 
                     CefSharp.WebBrowserExtensions.GetBrowserHost(instance.ChromiumWebBrowser).WindowlessFrameRate = 60;
@@ -38,7 +38,7 @@ partial class Overlay1
                 }
             }
 
-            return _directX11SwapChainPresentMethodHook!.Trampoline!(swapChainHandle, syncInterval, flags);
+            return _directX11SwapChainPresentMethodHook!.Trampoline!(swapChainNativeHandle, syncInterval, flags);
         }
     );
 }

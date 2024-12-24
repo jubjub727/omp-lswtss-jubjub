@@ -9,7 +9,7 @@
       <HintPath>..\..\..\dist\input-hook1\omp-lswtss-input-hook1.dll</HintPath>
       <Private>false</Private>
     </Reference>
-    <PackageReference Include="CefSharp.OffScreen.NetCore" Version="122.1.120" />
+    <PackageReference Include="CefSharp.OffScreen.NetCore" Version="131.3.10" />
     <PackageReference Include="SharpDX.DXGI" Version="4.2.0" />
     <PackageReference Include="SharpDX.Direct3D11" Version="4.2.0" />
     <PackageReference Include="SharpDX.Direct3D11.Effects" Version="4.2.0" />

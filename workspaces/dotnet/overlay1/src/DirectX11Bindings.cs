@@ -6,17 +6,17 @@ partial class Overlay1
 {
     static class DirectX11Bindings
     {
-        public delegate int SwapChainPresentMethodDelegate(nint swapChainHandle, int syncInterval, int flags);
+        public delegate int SwapChainPresentMethodNativeDelegate(nint swapChainNativeHandle, int syncInterval, int flags);
 
-        public delegate int SwapChainResizeBuffersMethodDelegate(nint swapChainHandle, int bufferCount, int width, int height, int newFormat, int swapChainFlags);
+        public delegate int SwapChainResizeBuffersMethodNativeDelegate(nint swapChainNativeHandle, int bufferCount, int width, int height, int newFormat, int swapChainFlags);
 
-        public static readonly nint SwapChainPresentMethodPtr;
+        public static readonly nint SwapChainPresentMethodNativePtr;
 
-        public static readonly nint SwapChainResizeBuffersMethodPtr;
+        public static readonly nint SwapChainResizeBuffersMethodNativePtr;
 
         static DirectX11Bindings()
         {
-            var windowHandle = PInvoke.User32.CreateWindowEx(
+            var windowNativeHandle = PInvoke.User32.CreateWindowEx(
                 0,
                 "STATIC",
                 "ID3D11DeviceWnd",
@@ -52,7 +52,7 @@ partial class Overlay1
                     },
                     Usage = SharpDX.DXGI.Usage.RenderTargetOutput,
                     BufferCount = 2,
-                    OutputHandle = windowHandle,
+                    OutputHandle = windowNativeHandle,
                     IsWindowed = true,
                     SwapEffect = SharpDX.DXGI.SwapEffect.Discard,
                     Flags = 0,
@@ -61,18 +61,18 @@ partial class Overlay1
                 out var swapChain
             );
 
-            var swapChainVtablePtr = Marshal.ReadIntPtr(swapChain.NativePointer);
+            var swapChainNativeVtablePtr = Marshal.ReadIntPtr(swapChain.NativePointer);
 
             using (device)
             {
                 using (swapChain)
                 {
-                    SwapChainPresentMethodPtr = Marshal.ReadIntPtr(swapChainVtablePtr, 8 * nint.Size);
-                    SwapChainResizeBuffersMethodPtr = Marshal.ReadIntPtr(swapChainVtablePtr, 13 * nint.Size);
+                    SwapChainPresentMethodNativePtr = Marshal.ReadIntPtr(swapChainNativeVtablePtr, 8 * nint.Size);
+                    SwapChainResizeBuffersMethodNativePtr = Marshal.ReadIntPtr(swapChainNativeVtablePtr, 13 * nint.Size);
                 }
             }
 
-            PInvoke.User32.DestroyWindow(windowHandle);
+            PInvoke.User32.DestroyWindow(windowNativeHandle);
         }
     }
 }

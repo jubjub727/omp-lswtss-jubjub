@@ -6,13 +6,13 @@ partial class InputHook1
 {
     static class DirectX11Bindings
     {
-        public delegate int SwapChainPresentMethodDelegate(nint swapChainHandle, int syncInterval, int flags);
+        public delegate int SwapChainPresentMethodNativeDelegate(nint swapChainHandle, int syncInterval, int flags);
 
-        public static readonly nint SwapChainPresentMethodPtr;
+        public static readonly nint SwapChainPresentMethodNativePtr;
 
         static DirectX11Bindings()
         {
-            var windowHandle = PInvoke.User32.CreateWindowEx(
+            var windowNativeHandle = PInvoke.User32.CreateWindowEx(
                 0,
                 "STATIC",
                 "ID3D11DeviceWnd",
@@ -48,7 +48,7 @@ partial class InputHook1
                     },
                     Usage = SharpDX.DXGI.Usage.RenderTargetOutput,
                     BufferCount = 2,
-                    OutputHandle = windowHandle,
+                    OutputHandle = windowNativeHandle,
                     IsWindowed = true,
                     SwapEffect = SharpDX.DXGI.SwapEffect.Discard,
                     Flags = 0,
@@ -61,13 +61,13 @@ partial class InputHook1
             {
                 using (swapChain)
                 {
-                    var swapChainVtablePtr = Marshal.ReadIntPtr(swapChain.NativePointer);
+                    var swapChainNativeVtablePtr = Marshal.ReadIntPtr(swapChain.NativePointer);
 
-                    SwapChainPresentMethodPtr = Marshal.ReadIntPtr(swapChainVtablePtr, 8 * nint.Size);
+                    SwapChainPresentMethodNativePtr = Marshal.ReadIntPtr(swapChainNativeVtablePtr, 8 * nint.Size);
                 }
             }
 
-            PInvoke.User32.DestroyWindow(windowHandle);
+            PInvoke.User32.DestroyWindow(windowNativeHandle);
         }
     }
 }

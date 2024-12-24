@@ -11,6 +11,7 @@ partial class Overlay1 : IDisposable
         if (!_isDisposed)
         {
             _instances.Remove(this);
+
             SortInstances();
 
             _inputHookClient.Dispose();

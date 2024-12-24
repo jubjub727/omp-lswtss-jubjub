@@ -22,7 +22,7 @@ public class DebugTools
         _ = new InputHook1.Client(
             int.MaxValue,
             (
-                inputHookClientNativeMessage
+                in InputHook1.NativeMessage inputHookClientNativeMessage
             ) =>
             {
                 if ((PInvoke.User32.WindowMessage)inputHookClientNativeMessage.Type == PInvoke.User32.WindowMessage.WM_KEYDOWN)

@@ -13,13 +13,13 @@ partial class Overlay1
             if (value)
             {
                 _activeInstance = this;
+                _inputHookClient.CursorOverrideImageNativeHandle = AreMouseEventsEnabled ? _cursorLastImageNativeHandle : null;
             }
             else if (_activeInstance == this)
             {
                 _activeInstance = null;
+                _inputHookClient.CursorOverrideImageNativeHandle = null;
             }
-
-            UpdateInputHookClient();
         }
     }
 }

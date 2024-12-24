@@ -2,26 +2,19 @@ namespace OMP.LSWTSS;
 
 partial class InputHook1
 {
-    readonly static CFuncHook1<DirectX11Bindings.SwapChainPresentMethodDelegate> _directX11SwapChainPresentMethodHook = new(
-        DirectX11Bindings.SwapChainPresentMethodPtr,
+    readonly static CFuncHook1<DirectX11Bindings.SwapChainPresentMethodNativeDelegate> _directX11SwapChainPresentMethodHook = new(
+        DirectX11Bindings.SwapChainPresentMethodNativePtr,
         (
-            swapChainHandle,
+            swapChainNativeHandle,
             syncInterval,
             flags
         ) =>
         {
-            using var swapChain = new SharpDX.DXGI.SwapChain(swapChainHandle);
+            using var swapChain = new SharpDX.DXGI.SwapChain(swapChainNativeHandle);
 
-            var windowHandle = swapChain.Description.OutputHandle;
+            _currentWindowNativeHandle = swapChain.Description.OutputHandle;
 
-            if (_windowHook == null || _windowHook.WindowHandle != windowHandle)
-            {
-                _windowHook?.Dispose();
-
-                _windowHook = new WindowHook(windowHandle);
-            }
-
-            return _directX11SwapChainPresentMethodHook!.Trampoline!(swapChainHandle, syncInterval, flags);
+            return _directX11SwapChainPresentMethodHook!.Trampoline!(swapChainNativeHandle, syncInterval, flags);
         }
     );
 }

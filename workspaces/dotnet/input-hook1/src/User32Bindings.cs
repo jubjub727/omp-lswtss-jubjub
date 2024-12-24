@@ -2,23 +2,29 @@ namespace OMP.LSWTSS;
 
 partial class InputHook1
 {
-    static class User32Bindings
+    static unsafe class User32Bindings
     {
-        public delegate int ShowCursorDelegate(bool bShow);
+        public delegate int ShowCursorNativeDelegate(bool bShow);
 
-        public delegate int SetCursorDelegate(nint hCursor);
+        public delegate int SetCursorNativeDelegate(nint hCursor);
 
-        public static readonly nint ShowCursorPtr;
+        public delegate bool PeekMessageANativeDelegate(PInvoke.User32.MSG* lpMsg, nint hWnd, uint wMsgFilterMin, uint wMsgFilterMax, uint wRemoveMsg);
 
-        public static readonly nint SetCursorPtr;
+        public static readonly nint ShowCursorNativePtr;
+
+        public static readonly nint SetCursorNativePtr;
+
+        public static readonly nint PeekMessageANativePtr;
 
         static User32Bindings()
         {
-            using var user32ModuleHandle = PInvoke.Kernel32.LoadLibrary("user32.dll");
+            using var user32ModuleNativeHandle = PInvoke.Kernel32.LoadLibrary("user32.dll");
 
-            ShowCursorPtr = PInvoke.Kernel32.GetProcAddress(user32ModuleHandle, "ShowCursor");
+            ShowCursorNativePtr = PInvoke.Kernel32.GetProcAddress(user32ModuleNativeHandle, "ShowCursor");
 
-            SetCursorPtr = PInvoke.Kernel32.GetProcAddress(user32ModuleHandle, "SetCursor");
+            SetCursorNativePtr = PInvoke.Kernel32.GetProcAddress(user32ModuleNativeHandle, "SetCursor");
+
+            PeekMessageANativePtr = PInvoke.Kernel32.GetProcAddress(user32ModuleNativeHandle, "PeekMessageA");
         }
     }
 }

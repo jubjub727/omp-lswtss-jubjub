@@ -1,3 +1,5 @@
+using System;
+
 namespace OMP.LSWTSS;
 
 partial class Overlay1
@@ -40,12 +42,21 @@ partial class Overlay1
             return new CefSharp.Structs.Rect(0, 0, 800, 600);
         }
 
-        public void OnAcceleratedPaint(CefSharp.PaintElementType type, CefSharp.Structs.Rect dirtyRect, nint sharedHandle)
+        public void OnAcceleratedPaint(CefSharp.PaintElementType type, CefSharp.Structs.Rect dirtyRect, CefSharp.AcceleratedPaintInfo acceleratedPaintInfo)
         {
+            if (
+                type == CefSharp.PaintElementType.View
+                &&
+                _overlay1._directX11OverlayQuad != null
+            )
+            {
+                _overlay1._directX11OverlayQuad.UpdateTexture(acceleratedPaintInfo.SharedTextureHandle);
+            }
         }
 
         public void OnCursorChange(nint cursor, CefSharp.Enums.CursorType type, CefSharp.Structs.CursorInfo customCursorInfo)
         {
+            _overlay1._cursorLastImageNativeHandle = cursor;
         }
 
         public void OnImeCompositionRangeChanged(CefSharp.Structs.Range selectedRange, CefSharp.Structs.Rect[] characterBounds)
@@ -54,18 +65,6 @@ partial class Overlay1
 
         public void OnPaint(CefSharp.PaintElementType type, CefSharp.Structs.Rect dirtyRect, nint buffer, int width, int height)
         {
-            if (
-                type == CefSharp.PaintElementType.View
-                &&
-                _overlay1._directX11OverlayQuad != null
-                &&
-                width == _overlay1._directX11OverlayQuad.TextureWidth
-                &&
-                height == _overlay1._directX11OverlayQuad.TextureHeight
-            )
-            {
-                _overlay1._directX11OverlayQuad.UpdateTexture(buffer);
-            }
         }
 
         public void OnPopupShow(bool show)

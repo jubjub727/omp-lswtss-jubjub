@@ -2,13 +2,13 @@ namespace OMP.LSWTSS;
 
 partial class InputHook1
 {
-    readonly static CFuncHook1<User32Bindings.ShowCursorDelegate> _user32ShowCursorHook = new(
-        User32Bindings.ShowCursorPtr,
+    readonly static CFuncHook1<User32Bindings.ShowCursorNativeDelegate> _user32ShowCursorHook = new(
+        User32Bindings.ShowCursorNativePtr,
         (
             bShow
         ) =>
         {
-            if (IsCursorVisible)
+            if (CursorOverrideImageNativeHandle != null)
             {
                 return bShow ? 1 : 0;
             }

@@ -2,10 +2,10 @@ namespace OMP.LSWTSS;
 
 partial class Overlay1
 {
-    readonly static CFuncHook1<DirectX11Bindings.SwapChainResizeBuffersMethodDelegate> _directX11SwapChainResizeBuffersMethodHook = new(
-        DirectX11Bindings.SwapChainResizeBuffersMethodPtr,
+    readonly static CFuncHook1<DirectX11Bindings.SwapChainResizeBuffersMethodNativeDelegate> _directX11SwapChainResizeBuffersMethodHook = new(
+        DirectX11Bindings.SwapChainResizeBuffersMethodNativePtr,
         (
-            swapChainHandle,
+            swapChainNativeHandle,
             bufferCount,
             width,
             height,
@@ -20,7 +20,7 @@ partial class Overlay1
             }
 
             return _directX11SwapChainResizeBuffersMethodHook!.Trampoline!(
-                swapChainHandle,
+                swapChainNativeHandle,
                 bufferCount,
                 width,
                 height,

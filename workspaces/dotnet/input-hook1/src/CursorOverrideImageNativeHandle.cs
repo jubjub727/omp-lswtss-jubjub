@@ -4,15 +4,15 @@ namespace OMP.LSWTSS;
 
 partial class InputHook1
 {
-    static nint? CursorOverrideImageHandle
+    static nint? CursorOverrideImageNativeHandle
     {
         get
         {
             lock (_clients)
             {
                 return _clients
-                    .FirstOrDefault((client) => client.CursorOverrideImageHandle.HasValue)?
-                    .CursorOverrideImageHandle;
+                    .FirstOrDefault((client) => client.CursorOverrideImageNativeHandle.HasValue)?
+                    .CursorOverrideImageNativeHandle;
             }
         }
     }

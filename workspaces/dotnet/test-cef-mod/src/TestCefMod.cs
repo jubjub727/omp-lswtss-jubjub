@@ -35,7 +35,7 @@ public partial class TestCefMod : IDisposable
         _inputHookClient = new InputHook1.Client(
             0,
             (
-                inputHookClientNativeMessage
+                in InputHook1.NativeMessage inputHookClientNativeMessage
             ) =>
             {
                 if ((PInvoke.User32.WindowMessage)inputHookClientNativeMessage.Type == PInvoke.User32.WindowMessage.WM_KEYDOWN)

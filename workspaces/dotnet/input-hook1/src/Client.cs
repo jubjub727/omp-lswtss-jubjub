@@ -6,31 +6,27 @@ partial class InputHook1
 {
     public sealed class Client : IDisposable
     {
-        public delegate bool HandleNativeMessageDelegate(NativeMessage nativeMessage);
+        public delegate bool HandleNativeMessageDelegate(in NativeMessage nativeMessage);
 
         public readonly int Order;
 
         public readonly HandleNativeMessageDelegate HandleNativeMessage;
 
-        public nint? CursorOverrideImageHandle;
-
-        public bool IsCursorVisible;
-
-        public bool AreKeyboardEventsIntercepted;
-
-        public bool AreMouseEventsIntercepted;
+        public nint? CursorOverrideImageNativeHandle;
 
         bool _isDisposed;
 
         public Client(int order, HandleNativeMessageDelegate handleNativeMessage)
         {
             Order = order;
+
             HandleNativeMessage = handleNativeMessage;
 
             lock (_clients)
             {
                 _clients.Add(this);
             }
+
             SortClients();
         }
 
@@ -42,6 +38,7 @@ partial class InputHook1
                 {
                     _clients.Remove(this);
                 }
+
                 SortClients();
 
                 _isDisposed = true;

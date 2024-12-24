@@ -15,9 +15,6 @@ partial class Overlay1
         // This line improves the performance
         cefOffScreenSettings.CefCommandLineArgs.Add("disable-threaded-scrolling", "1");
 
-        // TODO: Perf check this
-        // cefSettings.SetOffScreenRenderingBestPerformanceArgs();
-
         CefSharp.Cef.Initialize(
             cefOffScreenSettings,
             performDependencyCheck: true,

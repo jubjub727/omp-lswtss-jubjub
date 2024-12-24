@@ -2,18 +2,18 @@ namespace OMP.LSWTSS;
 
 partial class InputHook1
 {
-    public struct NativeMessage
+    public readonly struct NativeMessage(nint windowHandle, int type, nint wParam, nint lParam, int mouseScreenX, int mouseScreenY)
     {
-        public required nint WindowHandle;
+        public readonly nint WindowHandle = windowHandle;
 
-        public required int Type;
+        public readonly int Type = type;
 
-        public required nint WParam;
+        public readonly nint WParam = wParam;
 
-        public required nint LParam;
+        public readonly nint LParam = lParam;
 
-        public required int MouseScreenX;
+        public readonly int MouseScreenX = mouseScreenX;
 
-        public required int MouseScreenY;
+        public readonly int MouseScreenY = mouseScreenY;
     }
 }

@@ -9,7 +9,7 @@ partial class Overlay1
 
     sealed class DirectX11OverlayQuad : IDisposable
     {
-        readonly SharpDX.Direct3D11.Device _device;
+        readonly SharpDX.Direct3D11.Device1 _device1;
 
         readonly SharpDX.Direct3D11.DeviceContext _deviceContext;
 
@@ -17,17 +17,15 @@ partial class Overlay1
 
         readonly SharpDX.Direct3D11.Texture2D _texture;
 
-        readonly int _textureBytesLength;
-
-        readonly nint _textureBytesPtr;
-
         readonly DirectX11Quad _quad;
 
         readonly object _lock;
 
-        bool _areTextureBytesDirty;
-
         bool _isDisposed;
+
+        SharpDX.Direct3D11.Texture2D? _sharedTexture;
+
+        volatile bool _isSharedTextureDirty;
 
         public readonly SharpDX.DXGI.SwapChain SwapChain;
 
@@ -41,9 +39,9 @@ partial class Overlay1
         {
             SwapChain = swapChain;
 
-            _device = swapChain.GetDevice<SharpDX.Direct3D11.Device>();
+            _device1 = swapChain.GetDevice<SharpDX.Direct3D11.Device1>();
 
-            _deviceContext = _device.ImmediateContext;
+            _deviceContext = _device1.ImmediateContext;
 
             var backBuffer = swapChain.GetBackBuffer<SharpDX.Direct3D11.Texture2D>(0);
 
@@ -65,13 +63,7 @@ partial class Overlay1
                 Height = backBufferDesc.Height,
                 MipLevels = 1,
                 ArraySize = 1,
-                Format = backBufferDesc.Format switch
-                {
-                    SharpDX.DXGI.Format.R8G8B8A8_UNorm_SRgb => SharpDX.DXGI.Format.B8G8R8A8_UNorm_SRgb,
-                    SharpDX.DXGI.Format.B8G8R8A8_UNorm_SRgb => SharpDX.DXGI.Format.B8G8R8A8_UNorm_SRgb,
-                    SharpDX.DXGI.Format.B8G8R8X8_UNorm_SRgb => SharpDX.DXGI.Format.B8G8R8A8_UNorm_SRgb,
-                    _ => SharpDX.DXGI.Format.B8G8R8A8_UNorm,
-                },
+                Format = SharpDX.DXGI.Format.B8G8R8A8_UNorm,
                 SampleDescription = new SharpDX.DXGI.SampleDescription
                 {
                     Count = 1,
@@ -79,22 +71,18 @@ partial class Overlay1
                 },
                 Usage = SharpDX.Direct3D11.ResourceUsage.Default,
                 BindFlags = SharpDX.Direct3D11.BindFlags.ShaderResource,
-                CpuAccessFlags = SharpDX.Direct3D11.CpuAccessFlags.Write,
+                CpuAccessFlags = SharpDX.Direct3D11.CpuAccessFlags.None,
                 OptionFlags = SharpDX.Direct3D11.ResourceOptionFlags.None,
             };
 
-            _texture = new SharpDX.Direct3D11.Texture2D(_device, _textureDesc);
+            _texture = new SharpDX.Direct3D11.Texture2D(_device1, _textureDesc);
 
-            _textureBytesLength = _textureDesc.Width * _textureDesc.Height * 4;
-
-            _textureBytesPtr = Marshal.AllocHGlobal(_textureBytesLength);
-
-            _quad = new DirectX11Quad(_device, _texture, _textureDesc, backBuffer, backBufferViewport);
+            _quad = new DirectX11Quad(_device1, _texture, _textureDesc, backBuffer, backBufferViewport);
 
             _lock = new object();
         }
 
-        public void UpdateTexture(nint textureBytesPtr)
+        public void UpdateTexture(nint sharedTextureNativeHandle)
         {
             lock (_lock)
             {
@@ -103,53 +91,58 @@ partial class Overlay1
                     throw new InvalidOperationException();
                 }
 
-                unsafe
+                if (_sharedTexture?.NativePointer != sharedTextureNativeHandle)
                 {
-                    Buffer.MemoryCopy(
-                        (void*)textureBytesPtr,
-                        (void*)_textureBytesPtr,
-                        _textureBytesLength,
-                        _textureBytesLength
-                    );
+                    _sharedTexture?.Dispose();
+                    _sharedTexture = _device1.OpenSharedResource1<SharpDX.Direct3D11.Texture2D>(sharedTextureNativeHandle);
                 }
 
-                _areTextureBytesDirty = true;
+                _isSharedTextureDirty = true;
             }
         }
 
         public void Draw()
         {
-            lock (_lock)
+
+            if (_isDisposed)
             {
-                if (_isDisposed)
-                {
-                    throw new InvalidOperationException();
-                }
-
-                if (_areTextureBytesDirty)
-                {
-                    _deviceContext.UpdateSubresource(
-                        dstResourceRef: _texture,
-                        dstSubresource: 0,
-                        dstBoxRef: new SharpDX.Direct3D11.ResourceRegion
-                        {
-                            Left = 0,
-                            Top = 0,
-                            Front = 0,
-                            Right = _textureDesc.Width,
-                            Bottom = _textureDesc.Height,
-                            Back = 1,
-                        },
-                        srcDataRef: _textureBytesPtr,
-                        srcRowPitch: _textureDesc.Width * 4,
-                        srcDepthPitch: 0
-                    );
-
-                    _areTextureBytesDirty = false;
-                }
-
-                _quad.Draw();
+                throw new InvalidOperationException();
             }
+
+            if (_isSharedTextureDirty)
+            {
+                lock (_lock)
+                {
+                    if (_sharedTexture != null)
+                    {
+                        try
+                        {
+                            var sharedTextureDesc = _sharedTexture.Description;
+
+                            if (
+                                sharedTextureDesc.Width == _textureDesc.Width
+                                &&
+                                sharedTextureDesc.Height == _textureDesc.Height
+                                &&
+                                sharedTextureDesc.Format == _textureDesc.Format
+                            )
+                            {
+                                _deviceContext.CopyResource(_sharedTexture, _texture);
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e);
+                        }
+                        finally
+                        {
+                            _isSharedTextureDirty = false;
+                        }
+                    }
+                }
+            }
+
+            _quad.Draw();
         }
 
         public void Dispose()
@@ -159,10 +152,10 @@ partial class Overlay1
                 if (!_isDisposed)
                 {
                     _quad.Dispose();
-                    Marshal.FreeHGlobal(_textureBytesPtr);
                     _texture.Dispose();
                     _deviceContext.Dispose();
-                    _device.Dispose();
+                    _device1.Dispose();
+                    _sharedTexture?.Dispose();
 
                     _isDisposed = true;
                 }

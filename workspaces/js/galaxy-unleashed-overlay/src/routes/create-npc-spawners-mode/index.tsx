@@ -62,7 +62,7 @@ function RouteComponent() {
         }
       }}
     >
-      <SheetContent closeButtonHidden side="left">
+      <SheetContent closeButtonHidden side="right">
         <SheetHeader>
           <SheetTitle>Create NPC Spawners</SheetTitle>
         </SheetHeader>
@@ -111,15 +111,11 @@ function RouteComponent() {
             <TableBody>
               <TableRow>
                 <TableCell className="font-bold">F1</TableCell>
-                <TableCell>Create NPC Spawners Menu</TableCell>
+                <TableCell>Back to Menu</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell className="font-bold">F2</TableCell>
                 <TableCell>Create</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell className="font-bold">Esc</TableCell>
-                <TableCell>Exit</TableCell>
               </TableRow>
             </TableBody>
           </Table>

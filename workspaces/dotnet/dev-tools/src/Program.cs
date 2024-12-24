@@ -68,6 +68,11 @@ else if (commandName == "install-test-cef-mod")
     string gameDirPath = args[1];
     InstallTestCefMod.Execute(gameDirPath);
 }
+else if (commandName == "update-test-cef-mod")
+{
+    string gameDirPath = args[1];
+    UpdateTestCefMod.Execute(gameDirPath);
+}
 else if (commandName == "build-galaxy-unleashed")
 {
     BuildGalaxyUnleashed.Execute();
@@ -76,6 +81,21 @@ else if (commandName == "install-galaxy-unleashed")
 {
     string gameDirPath = args[1];
     InstallGalaxyUnleashed.Execute(gameDirPath);
+}
+else if (commandName == "update-galaxy-unleashed")
+{
+    string gameDirPath = args[1];
+    UpdateGalaxyUnleashed.Execute(gameDirPath);
+}
+else if (commandName == "dev-galaxy-unleashed")
+{
+    string gameDirPath = args[1];
+    DevGalaxyUnleashed.Execute(gameDirPath);
+}
+else if (commandName == "dev-update-galaxy-unleashed")
+{
+    string gameDirPath = args[1];
+    DevUpdateGalaxyUnleashed.Execute(gameDirPath);
 }
 else if (commandName == "build-bundle")
 {

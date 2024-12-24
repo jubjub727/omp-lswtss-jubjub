@@ -17,7 +17,7 @@ import {
 import {
   CreateNpcSpawnersModeConfig,
   NpcSpawnerConfig,
-  switchToCreateSpawnersMode,
+  switchToCreateNpcSpawnersMode,
 } from "@/lib/runtime-api";
 
 interface RouteStore {
@@ -94,8 +94,8 @@ function RouteComponent() {
               return;
             }
 
-            await switchToCreateSpawnersMode({
-              createSpawnersModeConfig: createNpcSpawnersModeConfig,
+            await switchToCreateNpcSpawnersMode({
+              createNpcSpawnersModeConfig,
             });
           }}
         >

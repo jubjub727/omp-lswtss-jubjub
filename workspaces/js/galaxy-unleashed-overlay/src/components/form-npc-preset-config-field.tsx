@@ -71,7 +71,7 @@ const FormNpcPresetConfigField = forwardRef<HTMLDivElement, FormNpcPresetConfigF
         ref={ref}
         {...props}
       >
-        <div className="grid grid-cols-[1fr_auto] items-center gap-2">
+        <div className="grid grid-rows-[auto_auto] items-center gap-2">
           <SelectCharacterCombobox
             label="Character"
             initialSelectedCharacterId={characterId}

@@ -37,7 +37,7 @@ function RouteComponent() {
         }
       }}
     >
-      <SheetContent closeButtonHidden side="left">
+      <SheetContent closeButtonHidden side="right">
         <SheetHeader>
           <SheetTitle>Manage Battle Flag</SheetTitle>
         </SheetHeader>
@@ -46,15 +46,11 @@ function RouteComponent() {
             <TableBody>
               <TableRow>
                 <TableCell className="font-bold">F1</TableCell>
-                <TableCell>Battle Menu</TableCell>
+                <TableCell>Back to Menu</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell className="font-bold">F2</TableCell>
                 <TableCell>Place Battle Flag</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell className="font-bold">Esc</TableCell>
-                <TableCell>Exit</TableCell>
               </TableRow>
             </TableBody>
           </Table>

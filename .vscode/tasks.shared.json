@@ -300,6 +300,25 @@
       "options": {
         "cwd": "${workspaceFolder}/workspaces/dotnet/dev-tools"
       },
+      "problemMatcher": []
+    },
+    {
+      "label": "update-test-cef-mod",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "run",
+        "--",
+        "update-test-cef-mod",
+        "${input:devGameDirPath}",
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+      },
+      "options": {
+        "cwd": "${workspaceFolder}/workspaces/dotnet/dev-tools"
+      },
       "problemMatcher": [],
       "group": {
         "kind": "build",
@@ -325,14 +344,33 @@
       "problemMatcher": []
     },
     {
-      "label": "build-and-install-galaxy-unleashed",
+      "label": "dev-galaxy-unleashed",
       "type": "shell",
       "command": "dotnet",
       "args": [
         "run",
         "--",
-        "install-galaxy-unleashed",
-        "${input:gameDirPath}",
+        "dev-galaxy-unleashed",
+        "${input:devGameDirPath}",
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+      },
+      "options": {
+        "cwd": "${workspaceFolder}/workspaces/dotnet/dev-tools"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "dev-update-galaxy-unleashed",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "run",
+        "--",
+        "dev-update-galaxy-unleashed",
+        "${input:devGameDirPath}",
       ],
       "presentation": {
         "reveal": "always",
@@ -344,11 +382,8 @@
       "problemMatcher": [],
       "group": {
         "kind": "build",
-        "isDefault": "workspaces/dotnet/galaxy-unleashed/**/*.cs"
-      },
-      "dependsOn": [
-        "build-galaxy-unleashed"
-      ]
+        "isDefault": "workspaces/dotnet/galaxy-unleashed-runtime/**/*.cs"
+      }
     },
     {
       "label": "build-bundle",

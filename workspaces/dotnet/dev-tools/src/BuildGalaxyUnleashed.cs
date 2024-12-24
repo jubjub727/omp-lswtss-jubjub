@@ -67,7 +67,7 @@ public static class BuildGalaxyUnleashed
                         ["payload"] = new JObject
                         {
                             ["typeName"] = "OMP.LSWTSS.GalaxyUnleashed",
-                            ["assemblyPath"] = "test-cef-mod.dll",
+                            ["assemblyPath"] = "omp-lswtss-galaxy-unleashed-runtime.dll",
                         },
                     },
                 },

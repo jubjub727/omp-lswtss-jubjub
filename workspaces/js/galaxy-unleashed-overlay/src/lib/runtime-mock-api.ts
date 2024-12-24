@@ -14,8 +14,6 @@ import {
   QuickSpawnNpcsModeConfig,
 } from "./runtime-shared-api";
 
-export * from "./runtime-shared-api";
-
 function getRandomInt(min: number, max: number) {
   const minCeiled = Math.ceil(min);
   const maxFloored = Math.floor(max);
@@ -26,61 +24,73 @@ const charactersInfo: CharacterInfo[] = [
   {
     id: "luke-skywalker",
     name: "Luke Skywalker",
+    prefabResourcePath: ".prefab_baked",
     class: CharacterClass.Jedi,
   },
   {
     id: "r2-d2",
     name: "R2-D2",
+    prefabResourcePath: ".prefab_baked",
     class: CharacterClass.AstromechDroid,
   },
   {
     id: "c3-po",
     name: "C-3PO",
+    prefabResourcePath: ".prefab_baked",
     class: CharacterClass.ProtocolDroid,
   },
   {
     id: "darth-vader",
     name: "Darth Vader",
+    prefabResourcePath: ".prefab_baked",
     class: CharacterClass.Sith,
   },
   {
     id: "leia-organa",
     name: "Leia Organa",
+    prefabResourcePath: ".prefab_baked",
     class: CharacterClass.RebelResistance,
   },
   {
     id: "han-solo",
     name: "Han Solo",
+    prefabResourcePath: ".prefab_baked",
     class: CharacterClass.Scoundrel,
   },
   {
     id: "stormtrooper",
     name: "Stormtrooper",
+    prefabResourcePath: ".prefab_baked",
     class: CharacterClass.GalacticEmpire,
   },
   {
     id: "imperial-officer",
     name: "Imperial Officer",
+    prefabResourcePath: ".prefab_baked",
     class: CharacterClass.GalacticEmpire,
   },
   {
     id: "boba-fett",
     name: "Boba Fett",
+    prefabResourcePath: ".prefab_baked",
     class: CharacterClass.Scoundrel,
   },
   {
     id: "qui-gon-jinn",
     name: "Qui-Gon Jinn",
+    prefabResourcePath: ".prefab_baked",
     class: CharacterClass.Jedi,
   },
   {
     id: "rey-jakku",
     name: "Rey (Jakku)",
+    prefabResourcePath: ".prefab_baked",
     class: CharacterClass.Scavenger,
   },
   {
     id: "jabba-the-hut",
     name: "Jabba The Hut",
+    prefabResourcePath: ".prefab_baked",
     class: CharacterClass.Civilian,
   },
 ];

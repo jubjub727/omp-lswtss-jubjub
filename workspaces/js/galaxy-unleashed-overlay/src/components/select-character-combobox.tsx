@@ -32,20 +32,25 @@ import {
 
 function SelectCharacterComboboxElement(
   {
-    label,
     characterInfo,
+    isCharacterClassBadgeVisible,
   }: {
-    label?: string;
     characterInfo: CharacterInfo;
+    isCharacterClassBadgeVisible: boolean;
   },
 ) {
   return (
     <>
-      {label === undefined ? <></> : `${label}: `}
       {characterInfo.name}
-      <Badge className="ml-auto flex w-28 justify-center">
-        {getCharacterClassName(characterInfo.class)}
-      </Badge>
+      {
+        !isCharacterClassBadgeVisible
+          ? <></>
+          : (
+              <Badge className="ml-auto flex w-28 justify-center">
+                {getCharacterClassName(characterInfo.class)}
+              </Badge>
+            )
+      }
     </>
   );
 }
@@ -114,7 +119,7 @@ const SelectCharacterCombobox = forwardRef<HTMLDivElement, SelectCharacterCombob
               {
                 selectedCharacterInfo === undefined
                   ? `Select ${label}...`
-                  : <SelectCharacterComboboxElement label={label} characterInfo={selectedCharacterInfo} />
+                  : <SelectCharacterComboboxElement characterInfo={selectedCharacterInfo} isCharacterClassBadgeVisible={false} />
               }
               <ChevronsUpDownIcon className="opacity-50" />
             </Button>
@@ -133,13 +138,14 @@ const SelectCharacterCombobox = forwardRef<HTMLDivElement, SelectCharacterCombob
                   {charactersInfo.map(characterInfo => (
                     <CommandItem
                       key={characterInfo.id}
+                      value={characterInfo.id}
                       keywords={[getCharacterClassName(characterInfo.class), characterInfo.name]}
                       onSelect={() => {
                         setSelectedCharacterId(characterInfo.id);
                         setOpen(false);
                       }}
                     >
-                      <SelectCharacterComboboxElement characterInfo={characterInfo} />
+                      <SelectCharacterComboboxElement characterInfo={characterInfo} isCharacterClassBadgeVisible={true} />
                     </CommandItem>
                   ))}
                 </CommandGroup>

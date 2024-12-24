@@ -11,6 +11,6 @@ public static class InstallAll
         InstallOverlay1.Execute(gameDirPath);
         InstallV1.Execute(gameDirPath);
         InstallDebugTools.Execute(gameDirPath);
-        InstallTestCefMod.Execute(gameDirPath);
+        InstallGalaxyUnleashed.Execute(gameDirPath);
     }
 }

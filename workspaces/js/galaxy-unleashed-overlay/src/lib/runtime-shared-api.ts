@@ -25,6 +25,7 @@ export const CHARACTER_FACTIONS_ID = Object.values(CharacterFactionId).filter(x 
 export interface CharacterInfo {
   id: string;
   name: string;
+  prefabResourcePath: string;
   class: CharacterClass;
 }
 
@@ -40,11 +41,13 @@ export interface NpcSpawnerConfig {
   areNpcsBattleParticipants: boolean;
 }
 
+export interface MenuModeNavigateParams {
+  to: string;
+  search: object | null;
+}
+
 export interface MenuModeConfig {
-  navigateParams: {
-    to: string;
-    search: object | null;
-  } | null;
+  navigateParams: MenuModeNavigateParams | null;
 }
 
 export interface QuickSpawnNpcsModeConfig {

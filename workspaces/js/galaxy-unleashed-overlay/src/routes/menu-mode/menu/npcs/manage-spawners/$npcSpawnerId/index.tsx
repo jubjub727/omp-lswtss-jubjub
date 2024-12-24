@@ -4,6 +4,7 @@ import { useCallback } from "react";
 
 import { Form } from "@/components/form";
 import { FormNpcSpawnerConfigFields } from "@/components/form-npc-spawner-config-fields";
+import { FormSwitchField } from "@/components/form-switch-field";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -13,6 +14,7 @@ import {
 } from "@/components/ui/card";
 import {
   NpcSpawnerConfig,
+  setIsNpcSpawnerEnabled,
   setNpcSpawnerConfig,
   useNpcSpawnersState,
 } from "@/lib/runtime-api";
@@ -50,6 +52,22 @@ function RouteComponent() {
     ],
   );
 
+  const onNpcSpawnerIsEnabledChange = useCallback(
+    async (isNpcSpawnerEnabled: boolean) => {
+      await setIsNpcSpawnerEnabled({
+        npcSpawnerId,
+        isNpcSpawnerEnabled,
+      });
+    },
+    [
+      npcSpawnerId,
+    ],
+  );
+
+  if (npcSpawnerState === undefined) {
+    return null;
+  }
+
   return (
     <Card className="flex size-full flex-col">
       <CardHeader>
@@ -67,8 +85,14 @@ function RouteComponent() {
       <CardContent className="grow overflow-hidden">
         <div className="size-full overflow-y-auto">
           <Form>
+            <FormSwitchField
+              label="Is Enabled"
+              description="When spawner is enabled, it spawns NPCs."
+              checked={npcSpawnerState.isEnabled}
+              onCheckedChange={onNpcSpawnerIsEnabledChange}
+            />
             <FormNpcSpawnerConfigFields
-              npcSpawnerInitialConfig={npcSpawnerState?.config}
+              npcSpawnerInitialConfig={npcSpawnerState.config}
               onNpcSpawnerConfigChange={onNpcSpawnerConfigChange}
             />
           </Form>

@@ -4,7 +4,6 @@ import {
   Outlet,
   useNavigate,
 } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -27,7 +26,6 @@ function RouteComponent() {
   return (
     <>
       <Outlet />
-      <TanStackRouterDevtools position="bottom-right" />
       <Toaster />
     </>
   );

@@ -6,7 +6,7 @@ namespace OMP.LSWTSS;
 
 public static class RunGame
 {
-    public static void Execute(string gameDirPath, GameKind gameKind)
+    public static void Execute(string gameDirPath, GameKind gameKind, string[]? gameProcessEnvExtraVars = null)
     {
         var gameProcess = new Process
         {
@@ -32,6 +32,14 @@ public static class RunGame
         else if (gameKind == GameKind.EGSGame)
         {
             gameProcess.StartInfo.ArgumentList.Add("-epicapp=c390e58246ea4a778acd26473a489b48");
+        }
+
+        if (gameProcessEnvExtraVars != null)
+        {
+            foreach (var gameProcessEnvExtraVar in gameProcessEnvExtraVars)
+            {
+                gameProcess.StartInfo.Environment[gameProcessEnvExtraVar] = "1";
+            }
         }
 
         gameProcess.OutputDataReceived += (sender, e) =>

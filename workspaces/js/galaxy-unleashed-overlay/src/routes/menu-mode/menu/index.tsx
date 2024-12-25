@@ -106,9 +106,10 @@ function RouteComponent() {
         />
         <MenuButton
           title="Boosters"
-          stage="Coming soon!"
+          stage="Alpha"
           description="Apply various boosters to your character."
           IconComponent={RocketIcon}
+          onClick={() => navigate({ to: "/menu-mode/menu/boosters" })}
         />
         <MenuButton
           title="More Coming Soon!"

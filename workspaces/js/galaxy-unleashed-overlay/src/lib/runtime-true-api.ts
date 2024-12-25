@@ -5,6 +5,10 @@ import {
   BattleState,
   CharacterInfo,
   CreateNpcSpawnersModeConfig,
+  JetpackBoosterConfig,
+  JetpackBoosterState,
+  JumpBoosterConfig,
+  JumpBoosterState,
   MenuModeConfig,
   ModeState,
   NpcSpawnerConfig,
@@ -21,6 +25,12 @@ interface RuntimeApi {
   destroyNpcSpawner: (argsAsString: string) => Promise<void>;
   fetchBattleState: (argsAsString: string) => Promise<string>;
   setIsBattleActive: (argsAsString: string) => Promise<void>;
+  fetchJetpackBoosterState: (argsAsString: string) => Promise<string>;
+  setIsJetpackBoosterEnabled: (argsAsString: string) => Promise<void>;
+  setJetpackBoosterConfig: (argsAsString: string) => Promise<void>;
+  fetchJumpBoosterState: (argsAsString: string) => Promise<string>;
+  setIsJumpBoosterEnabled: (argsAsString: string) => Promise<void>;
+  setJumpBoosterConfig: (argsAsString: string) => Promise<void>;
   fetchModeState: (argsAsString: string) => Promise<string>;
   switchToPlayMode: (argsAsString: string) => Promise<void>;
   switchToMenuMode: (argsAsString: string) => Promise<void>;
@@ -152,6 +162,80 @@ export async function setIsBattleActive(
   },
 ) {
   await getRuntimeApi().setIsBattleActive(JSON.stringify(args));
+}
+
+export const fetchJetpackBoosterState = async (
+  args: {},
+) => {
+  return JSON.parse(
+    await getRuntimeApi().fetchJetpackBoosterState(JSON.stringify(args)),
+  ) as JetpackBoosterState;
+};
+
+export function useJetpackBoosterState() {
+  return useSuspenseQuery({
+    queryKey: [`GalaxyUnleashed.JetpackBoosterState`],
+    queryFn: fetchJetpackBoosterState,
+    networkMode: `always`,
+    retry: true,
+    retryDelay: 100,
+    staleTime: 100,
+    refetchInterval: 100,
+    refetchIntervalInBackground: true,
+  }).data;
+}
+
+export async function setIsJetpackBoosterEnabled(
+  args: {
+    isJetpackBoosterEnabled: boolean;
+  },
+) {
+  await getRuntimeApi().setIsJetpackBoosterEnabled(JSON.stringify(args));
+}
+
+export async function setJetpackBoosterConfig(
+  args: {
+    jetpackBoosterConfig: JetpackBoosterConfig;
+  },
+) {
+  await getRuntimeApi().setJetpackBoosterConfig(JSON.stringify(args));
+}
+
+export const fetchJumpBoosterState = async (
+  args: {},
+) => {
+  return JSON.parse(
+    await getRuntimeApi().fetchJumpBoosterState(JSON.stringify(args)),
+  ) as JumpBoosterState;
+};
+
+export function useJumpBoosterState() {
+  return useSuspenseQuery({
+    queryKey: [`GalaxyUnleashed.JumpBoosterState`],
+    queryFn: fetchJumpBoosterState,
+    networkMode: `always`,
+    retry: true,
+    retryDelay: 100,
+    staleTime: 100,
+    refetchInterval: 100,
+    refetchIntervalInBackground: true,
+  }).data;
+}
+
+export async function setIsJumpBoosterEnabled(
+  args: {
+    isJumpBoosterEnabled: boolean;
+  },
+) {
+  await getRuntimeApi().setIsJumpBoosterEnabled(JSON.stringify(args));
+}
+
+export async function setJumpBoosterConfig(
+  args: {
+    jumpBoosterConfig: JumpBoosterConfig;
+  },
+) {
+  await getRuntimeApi().setJumpBoosterConfig(JSON.stringify(args));
 }
 
 export const fetchModeState = async (

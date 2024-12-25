@@ -41,6 +41,16 @@ export interface NpcSpawnerConfig {
   areNpcsBattleParticipants: boolean;
 }
 
+export interface JetpackBoosterConfig {
+  isUnlimitedFuelEnabled: boolean;
+  turboSpeedMultiplier: number;
+}
+
+export interface JumpBoosterConfig {
+  isUnlimitedDoubleJumpsEnabled: boolean;
+  jumpHeightMultiplier: number;
+}
+
 export interface MenuModeNavigateParams {
   to: string;
   search: object | null;
@@ -67,6 +77,16 @@ export interface NpcSpawnerState {
 
 export interface BattleState {
   isActive: boolean;
+}
+
+export interface JetpackBoosterState {
+  isEnabled: boolean;
+  config: JetpackBoosterConfig;
+}
+
+export interface JumpBoosterState {
+  isEnabled: boolean;
+  config: JumpBoosterConfig;
 }
 
 export enum ModeKind {

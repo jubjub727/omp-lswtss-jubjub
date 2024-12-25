@@ -17,6 +17,10 @@ public partial class GalaxyUnleashed
 
         using (new ProcessingScope())
         {
+            _jetpackBooster.Update();
+
+            _jumpBooster.Update();
+
             UpdateCharactersInfo();
 
             _playerEntityLastPosition = FetchPlayerEntityPosition();

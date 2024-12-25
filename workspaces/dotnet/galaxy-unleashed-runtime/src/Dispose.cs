@@ -22,6 +22,10 @@ public partial class GalaxyUnleashed : IDisposable
 
         using (new ProcessingScope())
         {
+            _jetpackBooster.Dispose();
+
+            _jumpBooster.Dispose();
+
             foreach (var npcSpawner in _npcSpawners.ToList())
             {
                 npcSpawner.Dispose();

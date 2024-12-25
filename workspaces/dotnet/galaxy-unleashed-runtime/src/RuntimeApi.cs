@@ -106,6 +106,64 @@ public partial class GalaxyUnleashed
             _instance!._battle.State.IsActive = args.IsBattleActive;
         }
 
+        public string FetchJetpackBoosterState(string argsAsJson)
+        {
+            return JsonConvert.SerializeObject(_instance!._jetpackBooster.State, _jsonSerializerSettings);
+        }
+
+        struct SetIsJetpackBoosterEnabledArgs
+        {
+            public bool IsJetpackBoosterEnabled;
+        }
+
+        public void SetIsJetpackBoosterEnabled(string argsAsJson)
+        {
+            var args = JsonConvert.DeserializeObject<SetIsJetpackBoosterEnabledArgs>(argsAsJson, _jsonSerializerSettings);
+
+            _instance!._jetpackBooster.State.IsEnabled = args.IsJetpackBoosterEnabled;
+        }
+
+        struct SetJetpackBoosterConfigArgs
+        {
+            public JetpackBoosterConfig JetpackBoosterConfig;
+        }
+
+        public void SetJetpackBoosterConfig(string argsAsJson)
+        {
+            var args = JsonConvert.DeserializeObject<SetJetpackBoosterConfigArgs>(argsAsJson, _jsonSerializerSettings);
+
+            _instance!._jetpackBooster.State.Config = args.JetpackBoosterConfig;
+        }
+
+        public string FetchJumpBoosterState(string argsAsJson)
+        {
+            return JsonConvert.SerializeObject(_instance!._jumpBooster.State, _jsonSerializerSettings);
+        }
+
+        struct SetIsJumpBoosterEnabledArgs
+        {
+            public bool IsJumpBoosterEnabled;
+        }
+
+        public void SetIsJumpBoosterEnabled(string argsAsJson)
+        {
+            var args = JsonConvert.DeserializeObject<SetIsJumpBoosterEnabledArgs>(argsAsJson, _jsonSerializerSettings);
+
+            _instance!._jumpBooster.State.IsEnabled = args.IsJumpBoosterEnabled;
+        }
+
+        struct SetJumpBoosterConfigArgs
+        {
+            public JumpBoosterConfig JumpBoosterConfig;
+        }
+
+        public void SetJumpBoosterConfig(string argsAsJson)
+        {
+            var args = JsonConvert.DeserializeObject<SetJumpBoosterConfigArgs>(argsAsJson, _jsonSerializerSettings);
+
+            _instance!._jumpBooster.State.Config = args.JumpBoosterConfig;
+        }
+
         public string FetchModeState(string argsAsJson)
         {
             return JsonConvert.SerializeObject(_instance!._modeState, _jsonSerializerSettings);

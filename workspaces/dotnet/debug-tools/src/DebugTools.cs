@@ -68,6 +68,8 @@ public class DebugTools
             GameFramework.ProcessMethod.Info.NativePtr,
             (nativeRawDataPtr) =>
             {
+                bool result = _gameFrameworkProcessMethodHook!.Trampoline!(nativeRawDataPtr);
+
                 if (_isRefreshShortcutTriggered)
                 {
                     runtimeEngineUnloadUnloadableScriptingModulesMethodInfo.Invoke(null, null);
@@ -78,7 +80,7 @@ public class DebugTools
 
                 runtimeEngineReloadUnloadableScriptingModulesIfChangedMethodInfo.Invoke(null, null);
 
-                return _gameFrameworkProcessMethodHook!.Trampoline!(nativeRawDataPtr);
+                return result;
             }
         );
 

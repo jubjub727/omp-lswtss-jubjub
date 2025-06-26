@@ -68,7 +68,7 @@ public static class BuildV1
             ),
             new JObject
             {
-                ["name"] = "V1",
+                ["name"] = "v1", // TODO: Implement real solution (pinning names lowercase/uppercase) instead of hacky rename
                 ["actions"] = new JArray
                 {
                     new JObject

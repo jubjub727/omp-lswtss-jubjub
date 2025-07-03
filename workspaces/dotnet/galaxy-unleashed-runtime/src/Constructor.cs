@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Linq;
 using OMP.LSWTSS.CApi1;
 
@@ -19,6 +20,8 @@ public partial class GalaxyUnleashed
     public GalaxyUnleashed()
     {
         _isDisposed = false;
+
+        Keybinds.LoadConfig(@"mods\galaxy-unleashed\keybinds.json");
 
         _overlay = new Overlay1(order: 1)
         {
